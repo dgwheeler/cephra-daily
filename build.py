@@ -37,14 +37,14 @@ def get_feed_images_for_date(target_date: str, company_workers: list[str] = None
     client = MongoClient("localhost", 27017)
     db = client["mneme"]
 
-    from datetime import datetime as dt
+    from datetime import datetime as dt, timedelta
     try:
         date_obj = dt.strptime(target_date, "%Y-%m-%d")
     except ValueError:
         return []
 
     # Find images created on this date
-    next_day = dt(date_obj.year, date_obj.month, date_obj.day + 1) if date_obj.day < 28 else dt(date_obj.year, date_obj.month + 1, 1)
+    next_day = date_obj + timedelta(days=1)
     images = list(db.generated_images.find({
         "created_at": {"$gte": date_obj, "$lt": next_day},
         "status": "completed",
