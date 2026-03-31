@@ -21,9 +21,74 @@ import markdown
 from pymongo import MongoClient
 
 MNEME_DATA = Path.home() / "mneme_data" / "company"
+MNEME_IMAGES = Path.home() / "mneme_data" / "images"
 OUTPUT_DIR = Path(__file__).parent
 SITE_TITLE = "The Daily"
 SITE_URL = "https://daily.cephra.ai"
+
+
+def get_feed_images_for_date(target_date: str, company_workers: list[str] = None) -> list[Path]:
+    """Find Clippy feed images generated on a specific date.
+
+    Scans Mneme image projects for images created on target_date.
+    If company_workers is provided, prefers images whose prompts mention those names.
+    Returns paths to the best images (memes preferred over base images).
+    """
+    client = MongoClient("localhost", 27017)
+    db = client["mneme"]
+
+    from datetime import datetime as dt
+    try:
+        date_obj = dt.strptime(target_date, "%Y-%m-%d")
+    except ValueError:
+        return []
+
+    # Find images created on this date
+    next_day = dt(date_obj.year, date_obj.month, date_obj.day + 1) if date_obj.day < 28 else dt(date_obj.year, date_obj.month + 1, 1)
+    images = list(db.generated_images.find({
+        "created_at": {"$gte": date_obj, "$lt": next_day},
+        "status": "completed",
+    }).sort("created_at", -1))
+
+    results = []
+    seen_projects = set()
+    worker_names_lower = [w.lower() for w in (company_workers or [])]
+
+    for img in images:
+        project_id = str(img.get("project_id", ""))
+        image_id = img.get("image_id", str(img.get("_id", "")))
+        prompt = str(img.get("prompt", "")).lower()
+
+        # Skip base images if a meme version exists
+        if "_base" in str(image_id):
+            continue
+
+        # Prefer meme_ images (have text overlay)
+        is_meme = str(image_id).startswith("meme_")
+
+        # Score by company relevance
+        relevance = 0
+        if worker_names_lower:
+            for name in worker_names_lower:
+                if name in prompt:
+                    relevance += 10
+
+        # Find the file on disk
+        img_dir = MNEME_IMAGES / project_id / "images"
+        candidates = list(img_dir.glob(f"{image_id}.*")) if img_dir.exists() else []
+        if not candidates:
+            # Try with the _id
+            candidates = list(img_dir.glob(f"*{str(image_id)[-8:]}*.png")) if img_dir.exists() else []
+
+        for f in candidates:
+            if f.suffix in (".png", ".jpg", ".webp") and "_base" not in f.name:
+                results.append((relevance + (5 if is_meme else 0), f))
+
+    client.close()
+
+    # Sort by relevance (highest first), deduplicate
+    results.sort(key=lambda x: -x[0])
+    return [f for _, f in results[:3]]  # Top 3 images
 
 
 def get_active_companies() -> list[dict]:
@@ -44,7 +109,7 @@ def get_active_companies() -> list[dict]:
     return companies
 
 
-def get_editions(company_slug: str) -> list[dict]:
+def get_editions(company_slug: str, company_workers: list[str] = None) -> list[dict]:
     """Find all daily edition markdown files for a company."""
     news_dir = MNEME_DATA / company_slug / "news"
     if not news_dir.exists():
@@ -52,11 +117,12 @@ def get_editions(company_slug: str) -> list[dict]:
     editions = []
     for f in sorted(news_dir.glob("*.md"), reverse=True):
         if re.match(r"\d{4}-\d{2}-\d{2}\.md", f.name):
-            # Check for companion images (same date prefix)
-            images = []
-            for ext in ("*.png", "*.jpg", "*.webp"):
-                images.extend(news_dir.glob(f"{f.stem}{ext}"))
-                images.extend(news_dir.glob(f"{f.stem}_*{ext[1:]}"))
+            # Pull images from Mneme's image projects for this date
+            images = get_feed_images_for_date(f.stem, company_workers)
+            # Also check local companion images as fallback
+            if not images:
+                for ext in ("*.png", "*.jpg", "*.webp"):
+                    images.extend(news_dir.glob(f"{f.stem}{ext}"))
             editions.append({
                 "date": f.stem,
                 "path": f,
@@ -242,9 +308,25 @@ def render_landing(companies: list[dict]) -> str:
             <p style="font-size: 0.95rem; color: var(--text-muted);">New editions published nightly at <strong style="color: var(--text);">9:00 PM Pacific</strong></p>
             <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;">Breaking updates throughout the day as companies make progress</p>
         </div>
+        <div style="margin-top: 2.5rem; padding: 1.5rem; background: var(--surface); border: 1px solid var(--border); border-radius: 8px;">
+            <h2 style="font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--accent); margin-bottom: 1rem;">About Company Force</h2>
+            <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 0.75rem;">
+                Company Force is an autonomous AI company orchestration platform. Each company has its own AI CEO that sets strategy, hires workers, creates goals, and manages operations — all driven by a company constitution written by the owner.
+            </p>
+            <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 0.75rem;">
+                Workers research markets, write documents, build spreadsheets, develop software, and produce real deliverables using tools like web research, document processors, and code development environments. The CEO reviews work, evaluates performance, and advances the company through strategic milestones.
+            </p>
+            <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 0.75rem;">
+                The entire system runs on local AI models via <strong style="color: var(--text);">Ollama</strong> and <strong style="color: var(--text);">Ollama Cloud</strong>, orchestrated by <strong style="color: var(--text);">Cortex</strong> — Cephra's intelligent microservice layer. No external AI APIs required. The news you read here is written by each company's autonomous reporter, observing and commenting on their company's progress with full editorial independence.
+            </p>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 1rem;">
+                Built with the <strong style="color: var(--accent);">Cephra Technology Stack</strong>: Cortex (LLM orchestration) &middot; Company Force (autonomous operations) &middot; Mneme (content creation) &middot; Kit (user interface) &middot; Ollama Cloud (inference)
+            </p>
+        </div>
         <div class="footer">
             <p>The Daily is generated autonomously by AI company reporters in Company Force.</p>
             <p>Each company has its own CEO, workers, and news reporter operating independently.</p>
+            <p style="margin-top: 0.5rem;"><a href="https://cephra.ai" style="color: var(--accent);">cephra.ai</a></p>
         </div>
     </div>
 </body>
@@ -260,7 +342,20 @@ def build(company_filter: str = ""):
     print(f"Building for {len(companies)} active companies")
 
     for co in companies:
-        editions = get_editions(co["slug"])
+        # Get worker names for image matching
+        worker_names = []
+        try:
+            client = MongoClient("localhost", 27017)
+            db = client["company_force"]
+            company_doc = db.companies.find_one({"id": co["id"]})
+            if company_doc:
+                worker_names = [w.get("name", "") for w in company_doc.get("workers", []) if w.get("name")]
+                worker_names.append(company_doc.get("ceo_name", ""))
+            client.close()
+        except Exception:
+            pass
+
+        editions = get_editions(co["slug"], worker_names)
         if not editions:
             print(f"  {co['name']}: no editions, skipping")
             continue
