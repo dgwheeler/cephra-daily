@@ -158,17 +158,20 @@ def md_to_html(md_content: str) -> tuple[str, str, str]:
 
 def get_loop_updates(company_slug: str, target_date: str) -> list[dict]:
     """Get loop updates for a company on a specific date."""
+    from zoneinfo import ZoneInfo
     updates_dir = MNEME_DATA / company_slug / "news" / "updates"
     if not updates_dir.exists():
         return []
+    pst = ZoneInfo("America/Los_Angeles")
     updates = []
     for f in sorted(updates_dir.glob(f"{target_date}_*.md")):
         content = f.read_text(encoding="utf-8")
-        # Extract time from filename (2026-03-31_07-11.md -> 07:11)
-        time_part = f.stem.split("_", 1)[1] if "_" in f.stem else ""
-        time_display = time_part.replace("-", ":") if time_part else ""
+        # Use file mtime for display (like Clippy does)
+        from datetime import datetime as dt
+        mtime = dt.fromtimestamp(f.stat().st_mtime, tz=pst)
+        mtime_display = mtime.strftime("%Y-%m-%d %I:%M %p PST")
         updates.append({
-            "time": time_display,
+            "mtime": mtime_display,
             "content": content,
             "filename": f.name,
         })
@@ -191,13 +194,13 @@ def render_edition(company: dict, edition: dict, output_dir: Path = None) -> str
         for u in reversed(updates):  # Newest first
             update_body = markdown.markdown(u["content"], extensions=["tables"])
             update_items += f"""
-                <div style="border-left: 2px solid var(--accent-dim); padding-left: 1rem; margin-bottom: 1.5rem;">
-                    <div style="font-family: 'Inter', sans-serif; font-size: 0.7rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.5rem;">{u['time']} PST</div>
+                <div style="border-left: 2px solid rgba(160, 120, 48, 0.5); padding-left: 1rem; margin-bottom: 1.5rem;">
+                    <div style="font-family: 'Courier New', monospace; font-size: 0.65rem; color: #555; margin-bottom: 0.4rem;">{u['mtime']}</div>
                     <div style="font-size: 0.9rem; color: #d0cec8; line-height: 1.6;">{update_body}</div>
                 </div>"""
         updates_html = f"""
             <div style="margin-top: 2.5rem; border-top: 2px solid var(--border); padding-top: 1.5rem;">
-                <h2 style="font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--accent); margin-bottom: 1.5rem;">Breaking Updates</h2>
+                <h2 style="font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--accent); margin-bottom: 1.5rem;">Wire Dispatches</h2>
                 {update_items}
             </div>"""
 
