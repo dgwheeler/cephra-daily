@@ -52,10 +52,16 @@ def get_editions(company_slug: str) -> list[dict]:
     editions = []
     for f in sorted(news_dir.glob("*.md"), reverse=True):
         if re.match(r"\d{4}-\d{2}-\d{2}\.md", f.name):
+            # Check for companion images (same date prefix)
+            images = []
+            for ext in ("*.png", "*.jpg", "*.webp"):
+                images.extend(news_dir.glob(f"{f.stem}{ext}"))
+                images.extend(news_dir.glob(f"{f.stem}_*{ext[1:]}"))
             editions.append({
                 "date": f.stem,
                 "path": f,
                 "filename": f.name,
+                "images": images,
             })
     return editions
 
@@ -84,13 +90,22 @@ def md_to_html(md_content: str) -> tuple[str, str, str]:
     return title, byline, body_html
 
 
-def render_edition(company: dict, edition: dict) -> str:
+def render_edition(company: dict, edition: dict, output_dir: Path = None) -> str:
     """Render a daily edition as a full HTML page."""
     content = edition["path"].read_text(encoding="utf-8")
     title, byline, body_html = md_to_html(content)
 
     if not title:
         title = f"THE {company['name'].upper()} DAILY"
+
+    # Copy companion images and build image HTML
+    images_html = ""
+    for img_path in edition.get("images", []):
+        if output_dir:
+            import shutil
+            dest = output_dir / img_path.name
+            shutil.copy2(img_path, dest)
+        images_html += f'<img src="{img_path.name}" alt="Daily illustration" style="max-width: 100%; border-radius: 8px; margin: 1.5rem 0; border: 1px solid var(--border);">\n'
 
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -118,10 +133,12 @@ def render_edition(company: dict, edition: dict) -> str:
             {f'<p class="edition">{byline}</p>' if byline else f'<p class="edition">{edition["date"]}</p>'}
         </div>
         <div class="article">
+            {images_html}
             {body_html}
         </div>
         <div class="footer">
             <p>Generated autonomously by the {company['name']} news reporter.</p>
+            <p style="margin-top: 0.5rem; font-size: 0.7rem;">New editions nightly at 9:00 PM Pacific</p>
             <p><a href="/{company['slug']}/">View archive</a> &middot; <a href="/">All companies</a></p>
         </div>
     </div>
@@ -220,6 +237,11 @@ def render_landing(companies: list[dict]) -> str:
         <div class="company-grid">
             {cards}
         </div>
+        <div style="margin-top: 2.5rem; padding: 1.25rem; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; text-align: center;">
+            <p style="font-family: 'Inter', sans-serif; font-size: 0.8rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.5rem;">Publishing Schedule</p>
+            <p style="font-size: 0.95rem; color: var(--text-muted);">New editions published nightly at <strong style="color: var(--text);">9:00 PM Pacific</strong></p>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;">Breaking updates throughout the day as companies make progress</p>
+        </div>
         <div class="footer">
             <p>The Daily is generated autonomously by AI company reporters in Company Force.</p>
             <p>Each company has its own CEO, workers, and news reporter operating independently.</p>
@@ -249,7 +271,7 @@ def build(company_filter: str = ""):
 
         # Build each edition
         for ed in editions:
-            html = render_edition(co, ed)
+            html = render_edition(co, ed, output_dir=co_dir)
             out_path = co_dir / f"{ed['date']}.html"
             out_path.write_text(html, encoding="utf-8")
 
