@@ -178,13 +178,32 @@ def get_loop_updates(company_slug: str, target_date: str) -> list[dict]:
     return updates
 
 
-def render_edition(company: dict, edition: dict, output_dir: Path = None) -> str:
+def render_edition(company: dict, edition: dict, all_editions: list[dict] = None, output_dir: Path = None) -> str:
     """Render a daily edition as a full HTML page."""
     content = edition["path"].read_text(encoding="utf-8")
     title, byline, body_html = md_to_html(content)
 
     if not title:
         title = f"THE {company['name'].upper()} DAILY"
+
+    # Build date navigator
+    all_dates = [e["date"] for e in (all_editions or [])]
+    current_idx = all_dates.index(edition["date"]) if edition["date"] in all_dates else 0
+    prev_date = all_dates[current_idx + 1] if current_idx + 1 < len(all_dates) else ""
+    next_date = all_dates[current_idx - 1] if current_idx > 0 else ""
+    date_options = "\n".join(
+        f'<option value="{d}" {"selected" if d == edition["date"] else ""}>{d}</option>'
+        for d in all_dates
+    )
+    date_nav = f"""
+        <div style="display: flex; align-items: center; justify-content: center; gap: 0.75rem; margin-bottom: 1.5rem; font-family: 'Inter', sans-serif;">
+            <a href="/{company['slug']}/{prev_date}.html" style="color: {'var(--accent)' if prev_date else 'var(--border)'}; text-decoration: none; font-size: 1.2rem; {'pointer-events: none;' if not prev_date else ''}">&larr;</a>
+            <select onchange="window.location.href='/{company['slug']}/'+this.value+'.html'"
+                    style="background: var(--surface); border: 1px solid var(--border); color: var(--text); padding: 0.4rem 0.75rem; border-radius: 6px; font-size: 0.8rem; font-family: 'Inter', sans-serif; cursor: pointer;">
+                {date_options}
+            </select>
+            <a href="/{company['slug']}/{next_date}.html" style="color: {'var(--accent)' if next_date else 'var(--border)'}; text-decoration: none; font-size: 1.2rem; {'pointer-events: none;' if not next_date else ''}">&rarr;</a>
+        </div>"""
 
     # Get loop updates for this date
     updates = get_loop_updates(company["slug"], edition["date"])
@@ -250,6 +269,7 @@ def render_edition(company: dict, edition: dict, output_dir: Path = None) -> str
             <h1>{title}</h1>
             {f'<p class="edition">{byline}</p>' if byline else f'<p class="edition">{edition["date"]}</p>'}
         </div>
+        {date_nav}
         <div class="article">
             {top_image_html}
             {body_html}
@@ -420,14 +440,37 @@ def build(company_filter: str = ""):
 
         # Build each edition
         for ed in editions:
-            html = render_edition(co, ed, output_dir=co_dir)
+            html = render_edition(co, ed, all_editions=editions, output_dir=co_dir)
             out_path = co_dir / f"{ed['date']}.html"
             out_path.write_text(html, encoding="utf-8")
 
-        # Latest redirect
+        # Company landing page with date navigation
         latest = editions[0]
+        date_options = "\n".join(
+            f'                    <option value="{ed["date"]}">{ed["date"]}</option>'
+            for ed in editions
+        )
         index_html = f"""<!DOCTYPE html>
-<html><head><meta http-equiv="refresh" content="0; url=/{co['slug']}/{latest['date']}.html"></head></html>"""
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The {co['name']} Daily</title>
+    <link rel="stylesheet" href="/style.css">
+    <script>
+        // Redirect to today's edition if it exists, otherwise latest
+        const dates = [{', '.join(f'"{ed["date"]}"' for ed in editions)}];
+        const today = new Date().toISOString().slice(0, 10);
+        const target = dates.includes(today) ? today : dates[0];
+        window.location.replace('/{co["slug"]}/' + target + '.html');
+    </script>
+</head>
+<body>
+    <noscript>
+        <meta http-equiv="refresh" content="0; url=/{co['slug']}/{latest['date']}.html">
+    </noscript>
+</body>
+</html>"""
         (co_dir / "index.html").write_text(index_html, encoding="utf-8")
 
         # Archive page

@@ -1,2 +1,21 @@
 <!DOCTYPE html>
-<html><head><meta http-equiv="refresh" content="0; url=/cephra-signal-advisory/2026-03-30.html"></head></html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Cephra Signal Advisory Daily</title>
+    <link rel="stylesheet" href="/style.css">
+    <script>
+        // Redirect to today's edition if it exists, otherwise latest
+        const dates = ["2026-03-30", "2026-03-29"];
+        const today = new Date().toISOString().slice(0, 10);
+        const target = dates.includes(today) ? today : dates[0];
+        window.location.replace('/cephra-signal-advisory/' + target + '.html');
+    </script>
+</head>
+<body>
+    <noscript>
+        <meta http-equiv="refresh" content="0; url=/cephra-signal-advisory/2026-03-30.html">
+    </noscript>
+</body>
+</html>
