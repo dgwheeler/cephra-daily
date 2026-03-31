@@ -110,16 +110,18 @@ def get_active_companies() -> list[dict]:
 
 
 def get_editions(company_slug: str, company_workers: list[str] = None) -> list[dict]:
-    """Find all daily edition markdown files for a company."""
+    """Find all daily edition markdown files for a company.
+
+    Also includes today's date if wire dispatches exist but no edition yet.
+    """
     news_dir = MNEME_DATA / company_slug / "news"
     if not news_dir.exists():
         return []
     editions = []
+    seen_dates = set()
     for f in sorted(news_dir.glob("*.md"), reverse=True):
         if re.match(r"\d{4}-\d{2}-\d{2}\.md", f.name):
-            # Pull images from Mneme's image projects for this date
             images = get_feed_images_for_date(f.stem, company_workers)
-            # Also check local companion images as fallback
             if not images:
                 for ext in ("*.png", "*.jpg", "*.webp"):
                     images.extend(news_dir.glob(f"{f.stem}{ext}"))
@@ -129,6 +131,21 @@ def get_editions(company_slug: str, company_workers: list[str] = None) -> list[d
                 "filename": f.name,
                 "images": images,
             })
+            seen_dates.add(f.stem)
+
+    # Include today if wire dispatches exist but no edition yet
+    today = date.today().isoformat()
+    if today not in seen_dates:
+        updates_dir = news_dir / "updates"
+        if updates_dir.exists() and list(updates_dir.glob(f"{today}_*.md")):
+            images = get_feed_images_for_date(today, company_workers)
+            editions.insert(0, {
+                "date": today,
+                "path": None,  # No daily edition yet
+                "filename": None,
+                "images": images,
+            })
+
     return editions
 
 
@@ -180,8 +197,14 @@ def get_loop_updates(company_slug: str, target_date: str) -> list[dict]:
 
 def render_edition(company: dict, edition: dict, all_editions: list[dict] = None, output_dir: Path = None) -> str:
     """Render a daily edition as a full HTML page."""
-    content = edition["path"].read_text(encoding="utf-8")
-    title, byline, body_html = md_to_html(content)
+    if edition["path"]:
+        content = edition["path"].read_text(encoding="utf-8")
+        title, byline, body_html = md_to_html(content)
+    else:
+        # No daily edition yet — just wire dispatches
+        title = f"THE {company['name'].upper()} DAILY"
+        byline = f"{edition['date']} — Edition pending (9:00 PM PST)"
+        body_html = '<p style="color: var(--text-muted); font-style: italic;">Today\'s daily edition will be published at 9:00 PM PST. Wire dispatches are available below.</p>'
 
     if not title:
         title = f"THE {company['name'].upper()} DAILY"
@@ -291,13 +314,16 @@ def render_archive(company: dict, editions: list[dict]) -> str:
     items = ""
     for ed in editions:
         # Read first non-title line as preview
-        content = ed["path"].read_text(encoding="utf-8")
-        preview = ""
-        for line in content.split("\n"):
-            line = line.strip()
-            if line and not line.startswith("#") and not line.startswith("**") and not line.startswith("---"):
-                preview = line[:200]
-                break
+        if ed["path"]:
+            content = ed["path"].read_text(encoding="utf-8")
+            preview = ""
+            for line in content.split("\n"):
+                line = line.strip()
+                if line and not line.startswith("#") and not line.startswith("**") and not line.startswith("---"):
+                    preview = line[:200]
+                    break
+        else:
+            preview = "Wire dispatches available — daily edition pending (9:00 PM PST)"
 
         items += f"""
             <li>
