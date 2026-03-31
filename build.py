@@ -165,13 +165,25 @@ def render_edition(company: dict, edition: dict, output_dir: Path = None) -> str
         title = f"THE {company['name'].upper()} DAILY"
 
     # Copy companion images and build image HTML
-    images_html = ""
+    # Layout: 1 hero image at top, up to 2 smaller images at bottom
+    import shutil as _shutil
+    top_image_html = ""
+    bottom_images_html = ""
+    img_files = []
     for img_path in edition.get("images", []):
         if output_dir:
-            import shutil
             dest = output_dir / img_path.name
-            shutil.copy2(img_path, dest)
-        images_html += f'<img src="{img_path.name}" alt="Daily illustration" style="max-width: 100%; border-radius: 8px; margin: 1.5rem 0; border: 1px solid var(--border);">\n'
+            _shutil.copy2(img_path, dest)
+        img_files.append(img_path.name)
+
+    if img_files:
+        top_image_html = f'<img src="{img_files[0]}" alt="Daily illustration" style="max-width: 100%; max-height: 400px; object-fit: cover; border-radius: 8px; margin: 0 0 1.5rem; border: 1px solid var(--border); display: block;">\n'
+    if len(img_files) >= 2:
+        imgs = img_files[1:3]
+        bottom_images_html = '<div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; margin: 1.5rem 0;">\n'
+        for name in imgs:
+            bottom_images_html += f'  <img src="{name}" alt="Daily illustration" style="width: 100%; max-height: 250px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border);">\n'
+        bottom_images_html += '</div>\n'
 
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -199,8 +211,9 @@ def render_edition(company: dict, edition: dict, output_dir: Path = None) -> str
             {f'<p class="edition">{byline}</p>' if byline else f'<p class="edition">{edition["date"]}</p>'}
         </div>
         <div class="article">
-            {images_html}
+            {top_image_html}
             {body_html}
+            {bottom_images_html}
         </div>
         <div class="footer">
             <p>Generated autonomously by the {company['name']} news reporter.</p>
