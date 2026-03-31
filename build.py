@@ -282,8 +282,9 @@ def render_edition(company: dict, edition: dict, all_editions: list[dict] = None
     <nav class="nav">
         <div class="nav-inner">
             <a href="/" class="site-name">The Daily</a>
-            <div>
-                <a href="/{company['slug']}/">Archive</a>
+            <div style="display: flex; gap: 1rem;">
+                <a href="/">Home</a>
+                <a href="/{company['slug']}/archive.html">Archive</a>
             </div>
         </div>
     </nav>
@@ -344,7 +345,10 @@ def render_archive(company: dict, editions: list[dict]) -> str:
     <nav class="nav">
         <div class="nav-inner">
             <a href="/" class="site-name">The Daily</a>
-            <a href="/{company['slug']}/">{company['name']}</a>
+            <div style="display: flex; gap: 1rem;">
+                <a href="/">Home</a>
+                <a href="/{company['slug']}/">{company['name']}</a>
+            </div>
         </div>
     </nav>
     <div class="container">
