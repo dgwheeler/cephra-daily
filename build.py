@@ -175,18 +175,25 @@ def md_to_html(md_content: str) -> tuple[str, str, str]:
 
 def get_loop_updates(company_slug: str, target_date: str) -> list[dict]:
     """Get loop updates for a company on a specific date."""
-    from zoneinfo import ZoneInfo
     updates_dir = MNEME_DATA / company_slug / "news" / "updates"
     if not updates_dir.exists():
         return []
-    pst = ZoneInfo("America/Los_Angeles")
     updates = []
     for f in sorted(updates_dir.glob(f"{target_date}_*.md")):
         content = f.read_text(encoding="utf-8")
-        # Use file mtime for display (like Clippy does)
-        from datetime import datetime as dt
-        mtime = dt.fromtimestamp(f.stat().st_mtime, tz=pst)
-        mtime_display = mtime.strftime("%Y-%m-%d %I:%M %p PST")
+        # Parse date/time from filename: 2026-03-31_05-23.md → "2026-03-31 05:23 AM PST"
+        parts = f.stem.split("_", 1)
+        date_part = parts[0] if parts else target_date
+        time_part = parts[1].replace("-", ":") if len(parts) > 1 else "00:00"
+        # Convert 24h to 12h
+        try:
+            h, m = time_part.split(":")
+            hour = int(h)
+            ampm = "AM" if hour < 12 else "PM"
+            display_hour = hour % 12 or 12
+            mtime_display = f"{date_part} {display_hour}:{m} {ampm} PST"
+        except (ValueError, IndexError):
+            mtime_display = f"{date_part} {time_part} PST"
         updates.append({
             "mtime": mtime_display,
             "content": content,
