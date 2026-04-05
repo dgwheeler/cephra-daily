@@ -34,8 +34,12 @@ SITE_URL = "https://newsfeed.cephra.ai"
 # Data fetching
 # =============================================================================
 
-def get_feed_images_for_date(target_date: str, company_workers: list[str] = None) -> list[Path]:
-    """Find Clippy feed images generated on a specific date."""
+def get_feed_images_for_date(target_date: str, company_workers: list[str] = None, company_name: str = "", company_id: str = "") -> list[Path]:
+    """Find Clippy feed images generated on a specific date for a company.
+
+    Checks for a per-company Clippy project first.  Falls back to the shared
+    project, filtering by worker/company names in the prompt.
+    """
     client = MongoClient("localhost", 27017)
     db = client["mneme"]
 
@@ -46,13 +50,24 @@ def get_feed_images_for_date(target_date: str, company_workers: list[str] = None
         return []
 
     next_day = date_obj + timedelta(days=1)
-    images = list(db.generated_images.find({
+
+    query = {
         "created_at": {"$gte": date_obj, "$lt": next_day},
         "status": "completed",
-    }).sort("created_at", -1))
+    }
+    # Prefer per-company Clippy project if it exists
+    has_company_project = False
+    if company_id:
+        company_project = db.image_projects.find_one({"title": f"Clippy Feed — {company_id}"})
+        if company_project:
+            query["project_id"] = company_project["_id"]
+            has_company_project = True
+
+    images = list(db.generated_images.find(query).sort("created_at", -1))
 
     results = []
-    worker_names_lower = [w.lower() for w in (company_workers or [])]
+    worker_names_lower = [w.lower() for w in (company_workers or []) if w]
+    company_name_lower = company_name.lower() if company_name else ""
 
     for img in images:
         project_id = str(img.get("project_id", ""))
@@ -62,12 +77,23 @@ def get_feed_images_for_date(target_date: str, company_workers: list[str] = None
         if "_base" in str(image_id):
             continue
 
+        # Match image to company by worker names or company name in prompt
         is_meme = str(image_id).startswith("meme_")
         relevance = 0
-        if worker_names_lower:
-            for name in worker_names_lower:
-                if name in prompt:
-                    relevance += 10
+        if has_company_project:
+            # Per-company project — all images belong to this company
+            relevance = 10
+        else:
+            if worker_names_lower:
+                for name in worker_names_lower:
+                    if name in prompt:
+                        relevance += 10
+            if company_name_lower and company_name_lower in prompt:
+                relevance += 15
+
+            # Skip images that don't mention any of this company's people or name
+            if relevance == 0 and (worker_names_lower or company_name_lower):
+                continue
 
         img_dir = MNEME_IMAGES / project_id / "images"
         candidates = list(img_dir.glob(f"{image_id}.*")) if img_dir.exists() else []
@@ -115,7 +141,7 @@ def get_active_companies() -> list[dict]:
     return companies
 
 
-def get_editions(company_slug: str, company_workers: list[str] = None) -> list[dict]:
+def get_editions(company_slug: str, company_workers: list[str] = None, company_name: str = "", company_id: str = "") -> list[dict]:
     """Find all daily edition markdown files for a company."""
     news_dir = MNEME_DATA / company_slug / "news"
     if not news_dir.exists():
@@ -124,7 +150,7 @@ def get_editions(company_slug: str, company_workers: list[str] = None) -> list[d
     seen_dates = set()
     for f in sorted(news_dir.glob("*.md"), reverse=True):
         if re.match(r"\d{4}-\d{2}-\d{2}\.md", f.name):
-            images = get_feed_images_for_date(f.stem, company_workers)
+            images = get_feed_images_for_date(f.stem, company_workers, company_name, company_id)
             if not images:
                 for ext in ("*.png", "*.jpg", "*.webp"):
                     images.extend(news_dir.glob(f"{f.stem}{ext}"))
@@ -140,7 +166,7 @@ def get_editions(company_slug: str, company_workers: list[str] = None) -> list[d
     if today not in seen_dates:
         updates_dir = news_dir / "updates"
         if updates_dir.exists() and list(updates_dir.glob(f"{today}_*.md")):
-            images = get_feed_images_for_date(today, company_workers)
+            images = get_feed_images_for_date(today, company_workers, company_name, company_id)
             editions.insert(0, {
                 "date": today,
                 "path": None,
@@ -189,11 +215,11 @@ def render_milestone_track(gov: dict) -> str:
             nodes_html += f'<div class="milestone-connector {conn_class}"></div>'
 
         title = ms.get("title", "")
-        # Truncate long titles
-        short_title = title[:20] + "..." if len(title) > 20 else title
+        # Truncate long titles — use tooltip for full text
+        short_title = title[:30] + "..." if len(title) > 30 else title
 
         nodes_html += f"""
-        <div class="milestone-node {css_class}">
+        <div class="milestone-node {css_class}" title="{title}">
             <div class="milestone-dot"></div>
             <div class="milestone-label">{short_title}</div>
         </div>"""
@@ -220,7 +246,7 @@ def render_decisions_panel(gov: dict) -> str:
     items_html = ""
     for d in decisions[:8]:
         dtype = d.get("type", "")
-        detail = d.get("detail", "")
+        detail = _clean_gov_text(d.get("detail", ""))
         actor = d.get("actor", "")
         items_html += f"""
         <li class="decision-item decision-item--{dtype}">
@@ -270,6 +296,13 @@ def render_execution_summary(gov: dict) -> str:
     </div>"""
 
 
+def _clean_gov_text(text: str) -> str:
+    """Clean governance text for display."""
+    if not text:
+        return text
+    return text.replace("\n", " ").replace("  ", " ").strip()
+
+
 def render_governance_panel(gov: dict) -> str:
     """Render owner directives, manager validations, escalations."""
     g = gov.get("governance", {})
@@ -283,13 +316,13 @@ def render_governance_panel(gov: dict) -> str:
 
     items_html = ""
     for d in directives:
-        items_html += f'<div class="governance-item directive"><div class="governance-item-label">Owner Directive</div>{d}</div>'
+        items_html += f'<div class="governance-item directive"><div class="governance-item-label">Owner Directive</div>{_clean_gov_text(d)}</div>'
     for v in validations:
-        items_html += f'<div class="governance-item validation"><div class="governance-item-label">Manager Validation</div>{v}</div>'
+        items_html += f'<div class="governance-item validation"><div class="governance-item-label">Manager Validation</div>{_clean_gov_text(v)}</div>'
     for e in escalations:
-        items_html += f'<div class="governance-item escalation"><div class="governance-item-label">Escalation</div>{e}</div>'
+        items_html += f'<div class="governance-item escalation"><div class="governance-item-label">Escalation</div>{_clean_gov_text(e)}</div>'
     for q in questions:
-        items_html += f'<div class="governance-item question"><div class="governance-item-label">CEO Question</div>{q}</div>'
+        items_html += f'<div class="governance-item question"><div class="governance-item-label">CEO Question</div>{_clean_gov_text(q)}</div>'
 
     return f"""
     <div class="panel">
@@ -411,6 +444,14 @@ def render_edition(company: dict, edition: dict, all_editions: list[dict] = None
         title = f"THE {company['name'].upper()} SIGNAL"
         byline = f"{edition['date']} — Edition pending (9:00 PM PST)"
         body_html = '<p style="color: var(--text-muted); font-style: italic;">Today\'s edition will be published at 9:00 PM PST. Signal dispatches are available below.</p>'
+
+        # Extract governance from the latest dispatch so panels still render
+        updates = get_loop_updates(company["slug"], edition["date"])
+        if updates:
+            for u in reversed(updates):  # latest first
+                if u.get("governance"):
+                    gov = u["governance"]
+                    break
 
     if not title:
         title = f"THE {company['name'].upper()} SIGNAL"
@@ -602,7 +643,7 @@ def render_landing(companies: list[dict]) -> str:
     """Render the main landing page — positioned as governance showcase."""
     cards = ""
     for co in companies:
-        editions = get_editions(co["slug"])
+        editions = get_editions(co["slug"], company_name=co["name"], company_id=co["id"])
         latest = editions[0]["date"] if editions else "No editions yet"
         count = len(editions)
 
@@ -711,7 +752,7 @@ def build(company_filter: str = ""):
         except Exception:
             pass
 
-        editions = get_editions(co["slug"], worker_names)
+        editions = get_editions(co["slug"], worker_names, co["name"], co["id"])
         if not editions:
             print(f"  {co['name']}: no editions, skipping")
             continue
