@@ -61,23 +61,39 @@
         <div class="milestone-gate">Gate: Working data pipelines for all free sources with scheduled execution and local persistence confirmed</div>
     </div><div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem;">
     <div class="panel">
+        <div class="panel-header">Decisions</div>
+        <ul class="decision-list">
+        <li class="decision-item decision-item--task_rejected">
+            <span class="decision-dot"></span>
+            <div>
+                <div>Task failed: Verify the SEC EDGAR collector is working correctly at trading_engine/data_colle</div>
+                <span class="decision-actor">7527bcf6</span>
+            </div>
+        </li></ul>
+    </div>
+    <div class="panel">
         <div class="panel-header">Execution</div>
-        <div class="stat-grid"><div class="stat-card"><div class="stat-number success">1</div><div class="stat-label">Tasks Completed</div></div><div class="stat-card"><div class="stat-number info">1</div><div class="stat-label">In Progress</div></div><div class="stat-card"><div class="stat-number">6</div><div class="stat-label">Artifacts</div></div></div>
+        <div class="stat-grid"><div class="stat-card"><div class="stat-number success">1</div><div class="stat-label">Tasks Completed</div></div><div class="stat-card"><div class="stat-number danger">1</div><div class="stat-label">Tasks Failed</div></div><div class="stat-card"><div class="stat-number info">1</div><div class="stat-label">In Progress</div></div><div class="stat-card"><div class="stat-number">6</div><div class="stat-label">Artifacts</div></div></div>
     </div></div>
     <div class="panel">
         <div class="panel-header">Governance</div>
-        <div class="governance-item question"><div class="governance-item-label">CEO Question</div>Cycle complete. Here's what I did: • Create Goal: Implement scheduled execution framework • Create Goal: Implement local persistence layer</div><div class="governance-item question"><div class="governance-item-label">CEO Question</div>Cycle complete. Here's what I did: • Create Goal: Validate SEC EDGAR data pipeline • Create Goal: Validate Alpha Vantage data pipeline • Create Goal: Create pipeline validation report</div><div class="governance-item question"><div class="governance-item-label">CEO Question</div>[CONSTITUTION UPDATE PROPOSED] Rationale: The current constitution builds a complex multi-component system simultaneously (daily research, hourly collection, multiple data sources, signal detection, paper trading, reporting). This creates cascading failures where any broken component stalls everything.</div>
+        <div class="governance-item question"><div class="governance-item-label">CEO Question</div>Cycle complete. Here's what I did: • Create Goal: Create dependency mapping system • Create Goal: Create dependency mapping system</div><div class="governance-item question"><div class="governance-item-label">CEO Question</div>Cycle complete. Here's what I did: • Create Goal: Implement scheduled execution framework • Create Goal: Implement local persistence layer</div><div class="governance-item question"><div class="governance-item-label">CEO Question</div>Cycle complete. Here's what I did: • Create Goal: Validate SEC EDGAR data pipeline • Create Goal: Validate Alpha Vantage data pipeline • Create Goal: Create pipeline validation report</div>
     </div></div>
         <div class="article">
             <div class="narrative-section">
-            <img src="img_1775431938563.png" alt="Signal illustration" style="max-width: 100%; max-height: 400px; object-fit: cover; border-radius: 8px; margin: 0 0 1.5rem; border: 1px solid var(--border); display: block;">
-
+            
             <p style="color: var(--text-muted); font-style: italic;">Today's edition will be published at 9:00 PM PST. Signal dispatches are available below.</p>
             </div>
             
             <div style="margin-top: 2.5rem; border-top: 2px solid var(--border); padding-top: 1.5rem;">
                 <h2 style="font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--accent); margin-bottom: 1.5rem;">Signal Dispatches</h2>
                 
+                <div style="border-left: 2px solid rgba(160, 120, 48, 0.5); padding-left: 1rem; margin-bottom: 1.5rem;">
+                    <div style="font-family: 'Courier New', monospace; font-size: 0.65rem; color: #555; margin-bottom: 0.4rem;">4:00 PM PST</div>
+                    <div style="font-size: 0.9rem; color: #d0cec8; line-height: 1.6;"><h3>Securing SEC Data Pipelines and Refining Governance Logic</h3>
+<p>The system successfully addressed an interruption in the SEC EDGAR collector within the <code>trading_engine</code> data pipeline. Following a process restart that temporarily orphaned the verification task, the system executed a direct verification to confirm the collector's operational status, ensuring the continuity of the architecture validation milestone.</p>
+<p>Simultaneously, the system is recalibrating its governance framework. Evander Thorne rejected a proposed constitution update, directing the system to shift focus from tactical corrections toward more robust, high-level decision-making logic. As these governance refinements continue, developer Morgan Tsai remains available to execute new objectives as the system iterates on its core operational parameters.</p></div>
+                </div>
                 <div style="border-left: 2px solid rgba(160, 120, 48, 0.5); padding-left: 1rem; margin-bottom: 1.5rem;">
                     <div style="font-family: 'Courier New', monospace; font-size: 0.65rem; color: #555; margin-bottom: 0.4rem;">2:00 PM PST</div>
                     <div style="font-size: 0.9rem; color: #d0cec8; line-height: 1.6;"><h3>Architectural refinement and governance evolution</h3>
@@ -131,7 +147,7 @@
         </div>
         
     <div class="system-footer">
-        <div class="system-footer-item">Workers <span class="system-footer-value">1</span></div><div class="system-footer-item">Goals <span class="system-footer-value">2 active</span> / 16 completed</div><div class="system-footer-item">Scores <span class="system-footer-value">Morgan Tsai: 0.8</span></div>
+        <div class="system-footer-item">Workers <span class="system-footer-value">1</span></div><div class="system-footer-item">Goals <span class="system-footer-value">1 active</span> / 17 completed</div><div class="system-footer-item">Scores <span class="system-footer-value">Morgan Tsai: 0.8</span></div>
         <div class="platform-badges"><span class="platform-badge">Company Force</span><span class="platform-badge">Cortex</span></div>
     </div>
         <div class="footer">
