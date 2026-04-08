@@ -125,12 +125,14 @@ def get_active_companies() -> list[dict]:
         goals_active = db.company_goals.count_documents({"company_id": comp_id, "status": "active"})
         goals_completed = db.company_goals.count_documents({"company_id": comp_id, "status": "completed"})
 
+        worker_names = [w.get("name", "") for w in c.get("workers", []) if w.get("name")]
         companies.append({
             "id": comp_id,
             "name": c.get("name", ""),
             "slug": slug,
             "ceo_name": c.get("ceo_name", ""),
             "reporter_name": c.get("reporter_name", ""),
+            "worker_names": worker_names,
             "milestone_position": f"{current_ms_idx + 1}/{len(milestones)}" if milestones else "",
             "current_milestone": milestones[current_ms_idx].get("title", "") if milestones and current_ms_idx < len(milestones) else "",
             "workers_active": workers_active,
@@ -643,7 +645,7 @@ def render_landing(companies: list[dict]) -> str:
     """Render the main landing page — positioned as governance showcase."""
     cards = ""
     for co in companies:
-        editions = get_editions(co["slug"], company_name=co["name"], company_id=co["id"])
+        editions = get_editions(co["slug"], company_workers=co.get("worker_names"), company_name=co["name"], company_id=co["id"])
         latest = editions[0]["date"] if editions else "No editions yet"
         count = len(editions)
 
