@@ -60,7 +60,7 @@ def get_feed_images_for_date(target_date: str, company_workers: list[str] = None
     if company_id:
         company_project = db.image_projects.find_one({"title": f"Clippy Feed — {company_id}"})
         if company_project:
-            query["project_id"] = company_project["_id"]
+            query["project_id"] = str(company_project["_id"])
             has_company_project = True
 
     images = list(db.generated_images.find(query).sort("created_at", -1))
