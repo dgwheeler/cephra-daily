@@ -800,8 +800,39 @@ def build(company_filter: str = ""):
     print(f"Landing page built with {len(companies)} companies")
 
 
+def git_commit_and_push():
+    """Commit all changes (including new images) and push to GitHub Pages."""
+    import subprocess
+    repo_dir = str(OUTPUT_DIR)
+    try:
+        # Check if there are any changes to commit
+        result = subprocess.run(
+            ["git", "status", "--porcelain"],
+            cwd=repo_dir, capture_output=True, text=True,
+        )
+        if not result.stdout.strip():
+            print("No changes to commit")
+            return
+
+        subprocess.run(["git", "add", "-A"], cwd=repo_dir, check=True)
+        date_str = __import__("datetime").date.today().isoformat()
+        subprocess.run(
+            ["git", "commit", "-m", f"Daily build {date_str}"],
+            cwd=repo_dir, check=True,
+        )
+        subprocess.run(["git", "push"], cwd=repo_dir, check=True)
+        print("Changes committed and pushed to GitHub Pages")
+    except subprocess.CalledProcessError as e:
+        print(f"Git operation failed: {e}")
+    except Exception as e:
+        print(f"Failed to commit/push: {e}")
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Build Cephra Signal static site")
     parser.add_argument("--company", default="", help="Filter to one company slug")
+    parser.add_argument("--no-push", action="store_true", help="Skip git commit and push")
     args = parser.parse_args()
     build(args.company)
+    if not args.no_push:
+        git_commit_and_push()
