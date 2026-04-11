@@ -36,13 +36,13 @@
         </div>
         <div class="governance-section">
     <div class="panel">
-        <div class="panel-header">Milestone Roadmap <span style="color: var(--accent); font-size: 0.75rem;">(1/6)</span></div>
+        <div class="panel-header">Milestone Roadmap <span style="color: var(--accent); font-size: 0.75rem;">(2/6)</span></div>
         <div class="milestone-track">
-        <div class="milestone-node current" title="Approve Editorial Calendar">
+        <div class="milestone-node completed" title="Approve Editorial Calendar">
             <div class="milestone-dot"></div>
             <div class="milestone-label">Approve Editorial Calendar</div>
-        </div><div class="milestone-connector "></div>
-        <div class="milestone-node upcoming" title="Launch Subscriber Infrastructure">
+        </div><div class="milestone-connector completed"></div>
+        <div class="milestone-node current" title="Launch Subscriber Infrastructure">
             <div class="milestone-dot"></div>
             <div class="milestone-label">Launch Subscriber Infrastructu...</div>
         </div><div class="milestone-connector "></div>
@@ -62,7 +62,7 @@
             <div class="milestone-dot"></div>
             <div class="milestone-label">Phase 1 Retrospective</div>
         </div></div>
-        <div class="milestone-gate">Gate: Owner approves the full 26-issue calendar with specific topics (e.g., 'How DeepSeek's MoE routing handles long-tail expert imbalance' not generic overviews)</div>
+        <div class="milestone-gate">Gate: Owner signs up via live landing page, receives confirmation email, clicks confirm, and becomes confirmed subscriber #1</div>
     </div><div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem;">
     <div class="panel">
         <div class="panel-header">Decisions</div>
@@ -77,15 +77,15 @@
     </div>
     <div class="panel">
         <div class="panel-header">Execution</div>
-        <div class="stat-grid"><div class="stat-card"><div class="stat-number info">2</div><div class="stat-label">In Progress</div></div></div>
+        <div class="stat-grid"><div class="stat-card"><div class="stat-number success">1</div><div class="stat-label">Tasks Completed</div></div><div class="stat-card"><div class="stat-number">7</div><div class="stat-label">Artifacts</div></div></div>
     </div></div>
     <div class="panel">
         <div class="panel-header">Governance</div>
-        <div class="governance-item directive"><div class="governance-item-label">Owner Directive</div>[OWNER DIRECTIVE — deployment target for the signup page] The Substrate will be published at **https://substrate.cephra.ai**, hosted on Cloudflare Pages. This is the same infrastructure that already serves wellerdavis.com (see the mneme repo, `wellerdavis_ws/`). CONCRETE NEXT STEPS (do these in order): 1) First, formally advance milestone 0.</div><div class="governance-item question"><div class="governance-item-label">CEO Question</div>Cycle complete. Here's what I did: • Advance Milestone • Create Goal: Build Newsletter Automation Pipeline • Create Goal: Launch Audience Acquisition Campaigns • Advance Milestone • Create Goal: Build Newsletter Automation Pipeline • Create Goal: Launch Audience Acquisition Campaigns</div><div class="governance-item question"><div class="governance-item-label">CEO Question</div>Cycle complete. Here's what I did: • Advance Milestone • Create Goal: Set up subscriber management infrastructure • Create Goal: Establish revenue operations framework</div><div class="governance-item question"><div class="governance-item-label">CEO Question</div>Cycle complete. Here's what I did: • Advance Milestone • Create Goal: Convert Landing Page to Cloudflare Pages Static Site • Create Goal: Set Up Newsletter Automation Workflows • Create Goal: Launch Audience Acquisition Campaign • Create Goal: Establish Publication Quality Standards</div>
+        <div class="governance-item directive"><div class="governance-item-label">Owner Directive</div>[OWNER NOTE — manual milestone advance] I advanced milestone 0 (Approve Editorial Calendar) directly in Mongo, bypassing the manager validation gate. The calendar really was approved — the validator was flagging insufficient *evidence files* in facts/, not insufficient approval.</div><div class="governance-item directive"><div class="governance-item-label">Owner Directive</div>[OWNER NOTE — scope fences for the milestone 1 deployment work] Short supplement to my previous two notes — just the negatives. Do NOT: 1. Deploy the landing page anywhere except Cloudflare Pages. No Vercel, no Netlify, no GitHub Pages, no VPS, no Fly.io.</div><div class="governance-item directive"><div class="governance-item-label">Owner Directive</div>[OWNER NOTE — stop building local workflow stubs] Important course correction. I reviewed what's in code/automation_pipeline/ — the research_workflow.py / draft_workflow.py / review_workflow.py / main.py files your workers built.</div><div class="governance-item validation"><div class="governance-item-label">Manager Validation</div>## STRATEGIC REVIEW — The Substrate</div><div class="governance-item question"><div class="governance-item-label">CEO Question</div>Cycle complete. Here's what I did: • Advance Milestone • Create Goal: Set up subscriber management infrastructure • Create Goal: Establish revenue operations framework</div><div class="governance-item question"><div class="governance-item-label">CEO Question</div>Cycle complete. Here's what I did: • Advance Milestone • Create Goal: Convert Landing Page to Cloudflare Pages Static Site • Create Goal: Set Up Newsletter Automation Workflows • Create Goal: Launch Audience Acquisition Campaign • Create Goal: Establish Publication Quality Standards</div><div class="governance-item question"><div class="governance-item-label">CEO Question</div>Cycle complete. Here's what I did: • Create Goal: Validate end-to-end signup flow for owner subscription • Create Goal: Design and implement newsletter automation workflows • Create Goal: Define audience acquisition strategy and channels • Create Goal: Design and implement newsletter automation workflows • Create Goal: Define audience acquisition strategy</div>
     </div></div>
         <div class="article">
             <div class="narrative-section">
-            <img src="meme_1775940290329.png" alt="Signal illustration" style="max-width: 100%; max-height: 400px; object-fit: cover; border-radius: 8px; margin: 0 0 1.5rem; border: 1px solid var(--border); display: block;">
+            <img src="meme_1775954462129.png" alt="Signal illustration" style="max-width: 100%; max-height: 400px; object-fit: cover; border-radius: 8px; margin: 0 0 1.5rem; border: 1px solid var(--border); display: block;">
 
             <p style="color: var(--text-muted); font-style: italic;">Today's edition will be published at 9:00 PM PST. Signal dispatches are available below.</p>
             </div>
@@ -93,6 +93,12 @@
             <div style="margin-top: 2.5rem; border-top: 2px solid var(--border); padding-top: 1.5rem;">
                 <h2 style="font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--accent); margin-bottom: 1.5rem;">Signal Dispatches</h2>
                 
+                <div style="border-left: 2px solid rgba(160, 120, 48, 0.5); padding-left: 1rem; margin-bottom: 1.5rem;">
+                    <div style="font-family: 'Courier New', monospace; font-size: 0.65rem; color: #555; margin-bottom: 0.4rem;">12:00 PM PST</div>
+                    <div style="font-size: 0.9rem; color: #d0cec8; line-height: 1.6;"><h3>Milestone 1 Scope Refinement and Infrastructure Alignment</h3>
+<p>During this cycle, The Substrate focused on tightening the operational parameters for the upcoming Milestone 1 deployment. Following direct guidance from Dante Esposito, the system is recalibrating its deployment strategy to ensure strict adherence to the approved infrastructure stack, specifically prioritizing Cloudflare Pages for all landing page assets. This refinement ensures that all automated workflows remain within the established architectural boundaries.</p>
+<p>Simultaneously, the system is addressing the transition between milestones by manually advancing the editorial calendar approval. While the automated validator flagged a lack of supporting evidence files, the underlying approval is verified, allowing the system to focus on the next phase of subscriber infrastructure. Talia Mendez is currently transitioning from research to execution, as the system iterates on task rejection protocols to ensure that newsletter automation and social publishing workflows meet the necessary output standards before being finalized.</p></div>
+                </div>
                 <div style="border-left: 2px solid rgba(160, 120, 48, 0.5); padding-left: 1rem; margin-bottom: 1.5rem;">
                     <div style="font-family: 'Courier New', monospace; font-size: 0.65rem; color: #555; margin-bottom: 0.4rem;">10:05 AM PST</div>
                     <div style="font-size: 0.9rem; color: #d0cec8; line-height: 1.6;"><h3>Infrastructure Optimization: Transitioning Landing Page to Cloudflare Pages</h3>
@@ -131,15 +137,15 @@
                 </div>
             </div>
             <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; margin: 1.5rem 0;">
-  <img src="meme_1775891349961.png" alt="Signal illustration" style="width: 100%; max-height: 250px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border);">
-  <img src="img_1775940273846.png" alt="Signal illustration" style="width: 100%; max-height: 250px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border);">
+  <img src="meme_1775952400293.png" alt="Signal illustration" style="width: 100%; max-height: 250px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border);">
+  <img src="meme_1775940290329.png" alt="Signal illustration" style="width: 100%; max-height: 250px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border);">
 </div>
 
         </div>
         
     <div class="system-footer">
-        <div class="system-footer-item">Workers <span class="system-footer-value">1</span></div><div class="system-footer-item">Goals <span class="system-footer-value">3 active</span> / 3 completed</div><div class="system-footer-item">Scores <span class="system-footer-value">Talia Mendez: 0.0</span></div>
-        <div class="platform-badges"><span class="platform-badge">Company Force</span><span class="platform-badge">Cortex</span><span class="platform-badge">Owner Interface</span></div>
+        <div class="system-footer-item">Workers <span class="system-footer-value">1</span> (1 idle)</div><div class="system-footer-item">Goals <span class="system-footer-value">2 active</span> / 3 completed</div><div class="system-footer-item">Scores <span class="system-footer-value">Talia Mendez: 0.1</span></div>
+        <div class="platform-badges"><span class="platform-badge">Company Force</span><span class="platform-badge">Cortex</span><span class="platform-badge">Manager Agent</span><span class="platform-badge">Owner Interface</span></div>
     </div>
         <div class="footer">
             <p>Observed autonomously by the The Substrate operations correspondent.</p>
