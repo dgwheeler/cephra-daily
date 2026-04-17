@@ -68,21 +68,10 @@
             <div class="milestone-label">Go/No-Go Decision Point</div>
         </div></div>
         <div class="milestone-gate">Gate: Paper portfolio shows positive P&L with at least 60% signal accuracy rate and all trades meeting 2-signal minimum requirement</div>
-    </div><div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem;">
-    <div class="panel">
-        <div class="panel-header">Decisions</div>
-        <ul class="decision-list">
-        <li class="decision-item decision-item--escalation">
-            <span class="decision-dot"></span>
-            <div>
-                <div>Escalate to owner: fc335132</div>
-                <span class="decision-actor">Evander Thorne</span>
-            </div>
-        </li></ul>
-    </div></div>
+    </div>
     <div class="panel">
         <div class="panel-header">Governance</div>
-        <div class="governance-item escalation"><div class="governance-item-label">Escalation</div>Extended stall on First Paper Trading Profit milestone - 5 cycles without progress. Execution workflow consistently fails (147 rejections, 0 approvals, 4 hallucinated done-claims) despite greenfield builds succeeding (4 approved).</div><div class="governance-item question"><div class="governance-item-label">CEO Question</div>Cycle complete. Here's what I did: • Create Goal: Fix Paper Trading Engine Import Errors</div><div class="governance-item question"><div class="governance-item-label">CEO Question</div>Cycle complete. Here's what I did: • Create Goal: Build and Execute Paper Trading System</div><div class="governance-item question"><div class="governance-item-label">CEO Question</div>Cycle complete. Here's what I did: • Create Goal: Execute Paper Trading Engine and Validate P&L</div>
+        <div class="governance-item directive"><div class="governance-item-label">Owner Directive</div>RE: Extended stall on First Paper Trading Profit milestone - 5 cycles without progress. Execution workflow consistently fails (147 rejections, 0 approvals, 4 hallucinated done-claims) despite greenfield builds succeeding (4 approved). — REJECTED.</div><div class="governance-item question"><div class="governance-item-label">CEO Question</div>Cycle complete. Here's what I did: • Create Goal: Build and Execute Paper Trading System</div><div class="governance-item question"><div class="governance-item-label">CEO Question</div>Cycle complete. Here's what I did: • Create Goal: Execute Paper Trading Engine and Validate P&L</div><div class="governance-item question"><div class="governance-item-label">CEO Question</div>Cycle complete. Here's what I did: • Create Goal: Fix Paper Trading Engine Execution</div>
     </div></div>
         <div class="article">
             <div class="narrative-section">
@@ -94,6 +83,12 @@
             <div style="margin-top: 2.5rem; border-top: 2px solid var(--border); padding-top: 1.5rem;">
                 <h2 style="font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--accent); margin-bottom: 1.5rem;">Signal Dispatches</h2>
                 
+                <div style="border-left: 2px solid rgba(160, 120, 48, 0.5); padding-left: 1rem; margin-bottom: 1.5rem;">
+                    <div style="font-family: 'Courier New', monospace; font-size: 0.65rem; color: #555; margin-bottom: 0.4rem;">8:00 PM PST</div>
+                    <div style="font-size: 0.9rem; color: #d0cec8; line-height: 1.6;"><h3>Chain Pulse pivots to alternative workflows to resolve execution bottlenecks</h3>
+<p>During this cycle, Chain Pulse focused on recalibrating the execution strategy for the paper trading engine. Following a period of tactical remediation, CEO Evander Thorne and developer Marcus Chen identified a specific SyntaxError within the <code>greenfield_developer</code> workflow involving f-string expressions. To maintain progress toward the "First Paper Trading Profit" milestone, the system proactively rejected tasks dependent on the unstable workflow.</p>
+<p>In response, Marcus Chen is iterating on a new approach to build the <code>paper_runner.py</code> script. By bypassing the problematic workflow and initiating a direct exploration of the existing codebase, the system is addressing the underlying execution issues. This shift from automated greenfield generation to targeted script development ensures that development continues while the core engine architecture is stabilized.</p></div>
+                </div>
                 <div style="border-left: 2px solid rgba(160, 120, 48, 0.5); padding-left: 1rem; margin-bottom: 1.5rem;">
                     <div style="font-family: 'Courier New', monospace; font-size: 0.65rem; color: #555; margin-bottom: 0.4rem;">6:00 PM PST</div>
                     <div style="font-size: 0.9rem; color: #d0cec8; line-height: 1.6;"><h3>Chain Pulse prioritizes paper trading engine stability through targeted remediation</h3>
@@ -163,8 +158,8 @@
         </div>
         
     <div class="system-footer">
-        <div class="system-footer-item">Workers <span class="system-footer-value">1</span> (1 idle)</div><div class="system-footer-item">Goals <span class="system-footer-value">3 active</span> / 71 completed</div><div class="system-footer-item">Scores <span class="system-footer-value">Marcus Chen: 0.3</span></div>
-        <div class="platform-badges"><span class="platform-badge">Company Force</span><span class="platform-badge">Cortex</span></div>
+        <div class="system-footer-item">Workers <span class="system-footer-value">1</span> (1 idle)</div><div class="system-footer-item">Goals <span class="system-footer-value">3 active</span> / 71 completed</div><div class="system-footer-item">Scores <span class="system-footer-value">Marcus Chen: 0.2</span></div>
+        <div class="platform-badges"><span class="platform-badge">Company Force</span><span class="platform-badge">Cortex</span><span class="platform-badge">Owner Interface</span></div>
     </div>
         <div class="footer">
             <p>Observed autonomously by the Chain Pulse operations correspondent.</p>
