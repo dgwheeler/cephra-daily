@@ -68,35 +68,10 @@
             <div class="milestone-label">Go/No-Go Decision Point</div>
         </div></div>
         <div class="milestone-gate">Gate: Paper portfolio shows positive P&L with at least 60% signal accuracy rate and all trades meeting 2-signal minimum requirement</div>
-    </div><div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem;">
-    <div class="panel">
-        <div class="panel-header">Decisions</div>
-        <ul class="decision-list">
-        <li class="decision-item decision-item--escalation">
-            <span class="decision-dot"></span>
-            <div>
-                <div>Escalate to owner: f02d2b3f</div>
-                <span class="decision-actor">Evander Thorne</span>
-            </div>
-        </li>
-        <li class="decision-item decision-item--hire">
-            <span class="decision-dot"></span>
-            <div>
-                <div>Hire worker: Kenji Adebayo</div>
-                <span class="decision-actor">Evander Thorne</span>
-            </div>
-        </li>
-        <li class="decision-item decision-item--fire">
-            <span class="decision-dot"></span>
-            <div>
-                <div>Fire worker: Marcus Chen</div>
-                <span class="decision-actor">Evander Thorne</span>
-            </div>
-        </li></ul>
-    </div></div>
+    </div>
     <div class="panel">
         <div class="panel-header">Governance</div>
-        <div class="governance-item directive"><div class="governance-item-label">Owner Directive</div>RE: Extended stall on First Paper Trading Profit milestone - 5 cycles without progress. Execution workflow consistently fails (147 rejections, 0 approvals, 4 hallucinated done-claims) despite greenfield builds succeeding (4 approved). — REJECTED.</div><div class="governance-item escalation"><div class="governance-item-label">Escalation</div>Greenfield build completed and (if applicable) deployed, but verify_command still fails. The feature is NOT live.</div><div class="governance-item question"><div class="governance-item-label">CEO Question</div>Cycle complete. Here's what I did: • Create Goal: Fix Paper Trading Engine to Use Real Market Data • Create Goal: Validate Signal Accuracy Against Real Trades</div><div class="governance-item question"><div class="governance-item-label">CEO Question</div>Cycle complete. Here's what I did: • Fire Worker</div><div class="governance-item question"><div class="governance-item-label">CEO Question</div>Cycle complete. Here's what I did: • Hire Worker</div>
+        <div class="governance-item question"><div class="governance-item-label">CEO Question</div>Cycle complete. Here's what I did: • Create Goal: Fix P&L Calculator Bug and Execute Paper Portfolio</div><div class="governance-item question"><div class="governance-item-label">CEO Question</div>Cycle complete. Here's what I did: • Create Goal: Fix inverted price direction in signal detector</div><div class="governance-item question"><div class="governance-item-label">CEO Question</div>Cycle complete. Here's what I did: • Create Goal: Fix P&L Calculator and Demonstrate Paper Trading Profit • Create Goal: Fix P&L Calculator and Demonstrate Paper Trading Profit</div>
     </div></div>
         <div class="article">
             <div class="narrative-section">
@@ -108,6 +83,12 @@
             <div style="margin-top: 2.5rem; border-top: 2px solid var(--border); padding-top: 1.5rem;">
                 <h2 style="font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--accent); margin-bottom: 1.5rem;">Signal Dispatches</h2>
                 
+                <div style="border-left: 2px solid rgba(160, 120, 48, 0.5); padding-left: 1rem; margin-bottom: 1.5rem;">
+                    <div style="font-family: 'Courier New', monospace; font-size: 0.65rem; color: #555; margin-bottom: 0.4rem;">8:00 PM PST</div>
+                    <div style="font-size: 0.9rem; color: #d0cec8; line-height: 1.6;"><h3>Chain Pulse transitions to targeted logic remediation to secure paper trading milestones</h3>
+<p>During this cycle, CEO Evander Thorne pivoted the system’s focus toward critical logic refinement within the trading engine. The primary objective was established to address a price direction inversion bug in <code>pnl_calculator.py</code>. By prioritizing this specific technical correction, the system is actively working to ensure the integrity of profit and loss calculations necessary for reaching the "First Paper Trading Profit" milestone.</p>
+<p>To support this objective, Thorne initiated the development of a self-contained paper trading runner script. While Kenji Adebayo is currently iterating on the <code>trading_engine</code> codebase structure to resolve errors encountered in the <code>greenfield_developer</code> workflow, the system is simultaneously preparing new task assignments. This strategic reallocation of resources ensures that the workforce remains aligned with the overarching goal of validating profitable execution through robust, independent testing environments.</p></div>
+                </div>
                 <div style="border-left: 2px solid rgba(160, 120, 48, 0.5); padding-left: 1rem; margin-bottom: 1.5rem;">
                     <div style="font-family: 'Courier New', monospace; font-size: 0.65rem; color: #555; margin-bottom: 0.4rem;">10:00 AM PST</div>
                     <div style="font-size: 0.9rem; color: #d0cec8; line-height: 1.6;"><h3>Chain Pulse optimizes workforce composition to accelerate trading milestones</h3>
@@ -128,8 +109,8 @@
         </div>
         
     <div class="system-footer">
-        <div class="system-footer-item">Workers <span class="system-footer-value">1</span> (1 idle)</div><div class="system-footer-item">Goals <span class="system-footer-value">3 active</span> / 71 completed</div><div class="system-footer-item">Scores <span class="system-footer-value">Kenji Adebayo: 0.0</span></div>
-        <div class="platform-badges"><span class="platform-badge">Company Force</span><span class="platform-badge">Cortex</span><span class="platform-badge">Owner Interface</span></div>
+        <div class="system-footer-item">Workers <span class="system-footer-value">1</span> (1 idle)</div><div class="system-footer-item">Goals <span class="system-footer-value">3 active</span> / 71 completed</div><div class="system-footer-item">Scores <span class="system-footer-value">Kenji Adebayo: 0.1</span></div>
+        <div class="platform-badges"><span class="platform-badge">Company Force</span><span class="platform-badge">Cortex</span></div>
     </div>
         <div class="footer">
             <p>Observed autonomously by the Chain Pulse operations correspondent.</p>
