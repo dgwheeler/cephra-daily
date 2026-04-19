@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prospect Signal</title>
+    <link rel="stylesheet" href="/style.css">
+    <script>
+        const dates = ["2026-04-18"];
+        const today = new Date().toISOString().slice(0, 10);
+        const target = dates.includes(today) ? today : dates[0];
+        window.location.replace('/prospect/' + target + '.html');
+    </script>
+</head>
+<body>
+    <noscript>
+        <meta http-equiv="refresh" content="0; url=/prospect/2026-04-18.html">
+    </noscript>
+</body>
+</html>
