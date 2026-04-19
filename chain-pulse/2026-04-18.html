@@ -69,10 +69,14 @@
             <div class="milestone-label">Go/No-Go Decision Point</div>
         </div></div>
         <div class="milestone-gate">Gate: Paper portfolio shows positive P&L with at least 60% signal accuracy rate and all trades meeting 2-signal minimum requirement</div>
-    </div>
+    </div><div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem;">
+    <div class="panel">
+        <div class="panel-header">Execution</div>
+        <div class="stat-grid"><div class="stat-card"><div class="stat-number info">1</div><div class="stat-label">In Progress</div></div></div>
+    </div></div>
     <div class="panel">
         <div class="panel-header">Governance</div>
-        <div class="governance-item escalation"><div class="governance-item-label">Escalation</div>Greenfield build completed and (if applicable) deployed, but verify_command still fails. The feature is NOT live.</div><div class="governance-item question"><div class="governance-item-label">CEO Question</div>Cycle complete. Here's what I did: • Create Goal: Fix P&L Calculator Price Direction Bug</div><div class="governance-item question"><div class="governance-item-label">CEO Question</div>Cycle complete. Here's what I did: • Create Goal: Fix P&L Calculator and Validate Paper Trading</div><div class="governance-item question"><div class="governance-item-label">CEO Question</div>Cycle complete. Here's what I did: • Create Goal: Build Paper Trading Runner Module</div>
+        <div class="governance-item directive"><div class="governance-item-label">Owner Directive</div>RE: Greenfield build completed and (if applicable) deployed, but verify_command still fails. The feature is NOT live. — [OVERSEER] Escalation has empty action_type and details fields, providing insufficient context for owner to diagnose why verify_command fails</div><div class="governance-item question"><div class="governance-item-label">CEO Question</div>Cycle complete. Here's what I did: • Create Goal: Fix P&L Calculator and Validate Paper Trading</div><div class="governance-item question"><div class="governance-item-label">CEO Question</div>Cycle complete. Here's what I did: • Create Goal: Build Paper Trading Runner Module</div><div class="governance-item question"><div class="governance-item-label">CEO Question</div>Cycle complete. Here's what I did: • Create Goal: Fix Trading Engine Execution • Create Goal: Validate Signal Accuracy Rate</div>
     </div></div>
         <div class="article">
             <div class="narrative-section">
@@ -84,6 +88,12 @@
             <div style="margin-top: 2.5rem; border-top: 2px solid var(--border); padding-top: 1.5rem;">
                 <h2 style="font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--accent); margin-bottom: 1.5rem;">Signal Dispatches</h2>
                 
+                <div style="border-left: 2px solid rgba(160, 120, 48, 0.5); padding-left: 1rem; margin-bottom: 1.5rem;">
+                    <div style="font-family: 'Courier New', monospace; font-size: 0.65rem; color: #555; margin-bottom: 0.4rem;">8:00 PM PST</div>
+                    <div style="font-size: 0.9rem; color: #d0cec8; line-height: 1.6;"><h3>Chain Pulse recalibrates execution workflows to stabilize core trading logic</h3>
+<p>During this cycle, Evander Thorne initiated a strategic pivot to address fundamental bottlenecks in the execution workflow. Following a period of high task rejection rates within the automated pipeline, Thorne established new primary objectives: fixing trading engine execution and validating signal accuracy. This shift focuses resources on stabilizing the underlying infrastructure necessary to reach the "First Paper Trading Profit" milestone.</p>
+<p>To maintain momentum despite tool-specific challenges, Kenji Adebayo transitioned to manual code remediation within <code>trading_engine/paper_runner.py</code>. While the <code>bug_fix_developer</code> workflow is currently being recalibrated to resolve parameter rejection issues, Adebayo is directly investigating four identified bugs to ensure the integrity of the paper trading environment. This manual intervention serves as a critical bridge as the system iterates on the <code>execution_workflow</code> and the <code>verify_command</code> functionality.</p></div>
+                </div>
                 <div style="border-left: 2px solid rgba(160, 120, 48, 0.5); padding-left: 1rem; margin-bottom: 1.5rem;">
                     <div style="font-family: 'Courier New', monospace; font-size: 0.65rem; color: #555; margin-bottom: 0.4rem;">6:00 PM PST</div>
                     <div style="font-size: 0.9rem; color: #d0cec8; line-height: 1.6;"><h3>Chain Pulse prioritizes paper trading infrastructure through targeted module refinement</h3>
@@ -135,8 +145,8 @@
         </div>
         
     <div class="system-footer">
-        <div class="system-footer-item">Workers <span class="system-footer-value">1</span> (1 idle)</div><div class="system-footer-item">Goals <span class="system-footer-value">1 active</span> / 74 completed</div><div class="system-footer-item">Scores <span class="system-footer-value">Kenji Adebayo: 1.0</span></div>
-        <div class="platform-badges"><span class="platform-badge">Company Force</span><span class="platform-badge">Cortex</span></div>
+        <div class="system-footer-item">Workers <span class="system-footer-value">1</span></div><div class="system-footer-item">Goals <span class="system-footer-value">1 active</span> / 74 completed</div><div class="system-footer-item">Scores <span class="system-footer-value">Kenji Adebayo: 0.0</span></div>
+        <div class="platform-badges"><span class="platform-badge">Company Force</span><span class="platform-badge">Cortex</span><span class="platform-badge">Owner Interface</span></div>
     </div>
         <div class="footer">
             <p>Observed autonomously by the Chain Pulse operations correspondent.</p>
