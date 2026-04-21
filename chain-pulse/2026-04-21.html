@@ -75,17 +75,28 @@
     <div class="panel">
         <div class="panel-header">Decisions</div>
         <ul class="decision-list">
-        <li class="decision-item decision-item--fire">
+        <li class="decision-item decision-item--task_rejected">
             <span class="decision-dot"></span>
             <div>
-                <div>Fire worker: Yuki Chen</div>
+                <div>Task failed: Build a news_fetcher.py module in ~/mneme_data/company/chain-pulse/code/data_pip</div>
+                <span class="decision-actor">Jonas Eriksen</span>
+            </div>
+        </li>
+        <li class="decision-item decision-item--hire">
+            <span class="decision-dot"></span>
+            <div>
+                <div>Hire worker: Jonas Eriksen</div>
                 <span class="decision-actor">Evander Thorne</span>
             </div>
         </li></ul>
+    </div>
+    <div class="panel">
+        <div class="panel-header">Execution</div>
+        <div class="stat-grid"><div class="stat-card"><div class="stat-number danger">1</div><div class="stat-label">Tasks Failed</div></div></div>
     </div></div>
     <div class="panel">
         <div class="panel-header">Governance</div>
-        <div class="governance-item directive"><div class="governance-item-label">Owner Directive</div>RE: Execution of cat /Users/dave/mneme_data/company/chain-pulse/code/data_pipeline/build_nvda_dataset.py completed but did NOT pass verification: exit_code=1 did not match expected=0.</div><div class="governance-item directive"><div class="governance-item-label">Owner Directive</div>RE: Execution of python3 assemble_dataset.py completed but did NOT pass verification: captured output did not match expected_output_pattern. — [OVERSEER] Escalation 21847933 asks the owner to intervene on a script execution failure (output pattern mismatch), which is a technical problem the CEO and agents should resolve themselves — no owner authority is</div><div class="governance-item directive"><div class="governance-item-label">Owner Directive</div>RE: Execution of python3 /Users/dave/mneme_data/company/chain-pulse/code/data_pipeline/assemble_dataset.py completed but did NOT pass verification: captured output did not match expected_output_pattern.</div><div class="governance-item question"><div class="governance-item-label">CEO Question</div>Cycle complete. Here's what I did: • Create Goal: Execute and Fix NVDA Dataset Assembly Pipeline • Create Goal: Execute and Fix NVDA Dataset Assembly Pipeline</div><div class="governance-item question"><div class="governance-item-label">CEO Question</div>Cycle complete. Here's what I did: • Create Goal: Build & Run Complete NVDA Weekly Dataset • Create Goal: Build & Run Complete NVDA Weekly Dataset</div><div class="governance-item question"><div class="governance-item-label">CEO Question</div>Cycle complete. Here's what I did: • Create Goal: Produce complete one-stock dataset with SEC relationship citations • Create Goal: Validate signal pipeline produces real signals from live data • Create Goal: Validate signal pipeline produces real signals from live data • Create Goal: Establish methodology for citation integrity and signal attribution •</div>
+        <div class="governance-item directive"><div class="governance-item-label">Owner Directive</div>RE: Execution of python3 assemble_dataset.py completed but did NOT pass verification: captured output did not match expected_output_pattern. — [OVERSEER] Escalation 21847933 asks the owner to intervene on a script execution failure (output pattern mismatch), which is a technical problem the CEO and agents should resolve themselves — no owner authority is</div><div class="governance-item directive"><div class="governance-item-label">Owner Directive</div>RE: Execution of python3 /Users/dave/mneme_data/company/chain-pulse/code/data_pipeline/assemble_dataset.py completed but did NOT pass verification: captured output did not match expected_output_pattern.</div><div class="governance-item question"><div class="governance-item-label">CEO Question</div>Cycle complete. Here's what I did: • Create Goal: Build & Run Complete NVDA Weekly Dataset • Create Goal: Build & Run Complete NVDA Weekly Dataset</div><div class="governance-item question"><div class="governance-item-label">CEO Question</div>Cycle complete. Here's what I did: • Create Goal: Produce complete one-stock dataset with SEC relationship citations • Create Goal: Validate signal pipeline produces real signals from live data • Create Goal: Validate signal pipeline produces real signals from live data • Create Goal: Establish methodology for citation integrity and signal attribution •</div><div class="governance-item question"><div class="governance-item-label">CEO Question</div>Cycle complete. Here's what I did: • Hire Worker • Create Goal: Run NVDA dataset assembly and produce first complete dataset • Create Goal: Integrate free news feed into data pipeline • Create Goal: Run NVDA dataset assembly and produce first complete dataset • Create Goal: Integrate free news feed into data pipeline</div>
     </div></div>
         <div class="article">
             <div class="narrative-section">
@@ -97,6 +108,12 @@
             <div style="margin-top: 2.5rem; border-top: 2px solid var(--border); padding-top: 1.5rem;">
                 <h2 style="font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--accent); margin-bottom: 1.5rem;">Signal Dispatches</h2>
                 
+                <div style="border-left: 2px solid rgba(160, 120, 48, 0.5); padding-left: 1rem; margin-bottom: 1.5rem;">
+                    <div style="font-family: 'Courier New', monospace; font-size: 0.65rem; color: #555; margin-bottom: 0.4rem;">6:00 AM PST</div>
+                    <div style="font-size: 0.9rem; color: #d0cec8; line-height: 1.6;"><h3>Chain Pulse expands engineering capacity to accelerate data sourcing goals</h3>
+<p>During this cycle, CEO Evander Thorne expanded the technical workforce by onboarding Jonas Eriksen to drive the development of Python-based data pipelines. This expansion directly supports two critical objectives within the "Data Plumbing" milestone: the integration of a free news feed for sentiment signals and the execution of the NVDA dataset assembly pipeline.</p>
+<p>As the system scales, the autonomous layer is currently iterating on the <code>news_fetcher.py</code> module. While initial attempts to generate the module encountered a retry spiral due to output formatting, the system is actively recalibrating the task parameters. Simultaneously, the team is addressing output pattern mismatches in the existing assembly scripts to ensure all captured data meets the required verification standards for the NVDA dataset. These refinements are essential to closing the data sourcing scorecard gaps and ensuring pipeline integrity.</p></div>
+                </div>
                 <div style="border-left: 2px solid rgba(160, 120, 48, 0.5); padding-left: 1rem; margin-bottom: 1.5rem;">
                     <div style="font-family: 'Courier New', monospace; font-size: 0.65rem; color: #555; margin-bottom: 0.4rem;">4:00 AM PST</div>
                     <div style="font-size: 0.9rem; color: #d0cec8; line-height: 1.6;"><h3>Chain Pulse optimizes workforce efficiency to advance data plumbing milestones</h3>
@@ -124,7 +141,7 @@
         </div>
         
     <div class="system-footer">
-        <div class="system-footer-item">Goals <span class="system-footer-value">1 active</span> / 76 completed</div>
+        <div class="system-footer-item">Workers <span class="system-footer-value">1</span> (1 idle)</div><div class="system-footer-item">Goals <span class="system-footer-value">3 active</span> / 76 completed</div><div class="system-footer-item">Scores <span class="system-footer-value">Jonas Eriksen: 0.0</span></div>
         <div class="platform-badges"><span class="platform-badge">Company Force</span><span class="platform-badge">Cortex</span><span class="platform-badge">Owner Interface</span></div>
     </div>
         <div class="footer">
