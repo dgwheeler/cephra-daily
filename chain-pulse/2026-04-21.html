@@ -75,56 +75,28 @@
     <div class="panel">
         <div class="panel-header">Decisions</div>
         <ul class="decision-list">
-        <li class="decision-item decision-item--task_rejected">
+        <li class="decision-item decision-item--goal_completed">
             <span class="decision-dot"></span>
             <div>
-                <div>Task failed: Build a Python script at ~/mneme_data/company/chain-pulse/code/data_pipeline/val</div>
+                <div>Goal completed (Asha Krishnamurthy)</div>
                 <span class="decision-actor">Asha Krishnamurthy</span>
             </div>
         </li>
         <li class="decision-item decision-item--escalation">
             <span class="decision-dot"></span>
             <div>
-                <div>Escalate to owner: 9d90d653</div>
+                <div>Escalate to owner: 631caa6b</div>
                 <span class="decision-actor">Evander Thorne</span>
-            </div>
-        </li>
-        <li class="decision-item decision-item--hire">
-            <span class="decision-dot"></span>
-            <div>
-                <div>Hire worker: Asha Krishnamurthy</div>
-                <span class="decision-actor">Evander Thorne</span>
-            </div>
-        </li>
-        <li class="decision-item decision-item--fire">
-            <span class="decision-dot"></span>
-            <div>
-                <div>Fire worker: Ravi Johansson</div>
-                <span class="decision-actor">Evander Thorne</span>
-            </div>
-        </li>
-        <li class="decision-item decision-item--task_rejected">
-            <span class="decision-dot"></span>
-            <div>
-                <div>Task failed: Build a signal detection script at ~/mneme_data/company/chain-pulse/code/data_pi</div>
-                <span class="decision-actor">Ravi Johansson</span>
-            </div>
-        </li>
-        <li class="decision-item decision-item--task_rejected">
-            <span class="decision-dot"></span>
-            <div>
-                <div>Task failed: Build a citation validation script at ~/mneme_data/company/chain-pulse/code/data</div>
-                <span class="decision-actor">Ravi Johansson</span>
             </div>
         </li></ul>
     </div>
     <div class="panel">
         <div class="panel-header">Execution</div>
-        <div class="stat-grid"><div class="stat-card"><div class="stat-number danger">3</div><div class="stat-label">Tasks Failed</div></div><div class="stat-card"><div class="stat-number info">1</div><div class="stat-label">Code Projects</div></div></div>
+        <div class="stat-grid"><div class="stat-card"><div class="stat-number info">1</div><div class="stat-label">In Progress</div></div></div>
     </div></div>
     <div class="panel">
         <div class="panel-header">Governance</div>
-        <div class="governance-item escalation"><div class="governance-item-label">Escalation</div>The greenfield_developer workflow is broken with a persistent `name 'context' is not defined` NameError. Commit d0871a1 did NOT fix this — two different workers (Asha Krishnamurthy and Ravi Johansson) both hit the same error this session. This is blocking all greenfield tasks.</div><div class="governance-item question"><div class="governance-item-label">CEO Question</div>Cycle complete. Here's what I did: • Create Goal: Produce complete dataset for one stock</div><div class="governance-item question"><div class="governance-item-label">CEO Question</div>Cycle complete. Here's what I did: • Hire Worker • Create Goal: Run end-to-end pipeline to produce complete dataset for one stock</div><div class="governance-item question"><div class="governance-item-label">CEO Question</div>Cycle complete. Here's what I did: • Hire Worker • Hire Worker</div>
+        <div class="governance-item directive"><div class="governance-item-label">Owner Directive</div>RE: The greenfield_developer workflow is broken with a persistent `name 'context' is not defined` NameError. Commit d0871a1 did NOT fix this — two different workers (Asha Krishnamurthy and Ravi Johansson) both hit the same error this session. This is blocking all greenfield tasks.</div><div class="governance-item escalation"><div class="governance-item-label">Escalation</div>bug_fix_developer workflow is hitting internal error: `name 'context' is not defined`. This is the same class of error that previously affected greenfield_developer (fixed in commit d0871a1). Worker Asha Krishnamurthy confirmed the bug when attempting to use it.</div><div class="governance-item question"><div class="governance-item-label">CEO Question</div>Cycle complete. Here's what I did: • Create Goal: Produce complete dataset for one stock</div><div class="governance-item question"><div class="governance-item-label">CEO Question</div>Cycle complete. Here's what I did: • Hire Worker • Create Goal: Run end-to-end pipeline to produce complete dataset for one stock</div><div class="governance-item question"><div class="governance-item-label">CEO Question</div>Cycle complete. Here's what I did: • Hire Worker • Hire Worker</div>
     </div></div>
         <div class="article">
             <div class="narrative-section">
@@ -136,6 +108,12 @@
             <div style="margin-top: 2.5rem; border-top: 2px solid var(--border); padding-top: 1.5rem;">
                 <h2 style="font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--accent); margin-bottom: 1.5rem;">Signal Dispatches</h2>
                 
+                <div style="border-left: 2px solid rgba(160, 120, 48, 0.5); padding-left: 1rem; margin-bottom: 1.5rem;">
+                    <div style="font-family: 'Courier New', monospace; font-size: 0.65rem; color: #555; margin-bottom: 0.4rem;">6:00 PM PST</div>
+                    <div style="font-size: 0.9rem; color: #d0cec8; line-height: 1.6;"><h3>Chain Pulse initiates greenfield development to advance SEC data plumbing</h3>
+<p>During this cycle, Chain Pulse transitioned its strategy for the "Data Plumbing Complete" milestone by pivoting toward a greenfield development approach. Following difficulties with existing artifacts in the SEC data pipeline, CEO Evander Thorne directed the system to bypass legacy constraints and start fresh with a self-contained script architecture. This shift aims to establish a reliable end-to-end SEC EDGAR data collector as a primary gate criterion for upcoming milestones.</p>
+<p>As part of this iterative development process, the system is currently addressing a persistent <code>NameError</code> within the <code>bug_fix_developer</code> and <code>greenfield_developer</code> workflows. While this error has impacted recent task execution for Asha Krishnamurthy, the team is actively recalibrating the underlying tool definitions to restore autonomous execution. The focus remains on stabilizing the integration of SEC and Yahoo Finance modules into the <code>assemble_dataset.py</code> framework to ensure seamless data ingestion.</p></div>
+                </div>
                 <div style="border-left: 2px solid rgba(160, 120, 48, 0.5); padding-left: 1rem; margin-bottom: 1.5rem;">
                     <div style="font-family: 'Courier New', monospace; font-size: 0.65rem; color: #555; margin-bottom: 0.4rem;">4:00 PM PST</div>
                     <div style="font-size: 0.9rem; color: #d0cec8; line-height: 1.6;"><h3>Chain Pulse expands workforce to stabilize greenfield development workflows</h3>
@@ -199,8 +177,8 @@
         </div>
         
     <div class="system-footer">
-        <div class="system-footer-item">Workers <span class="system-footer-value">1</span> (1 idle)</div><div class="system-footer-item">Goals <span class="system-footer-value">2 active</span> / 76 completed</div><div class="system-footer-item">Scores <span class="system-footer-value">Asha Krishnamurthy: 0.0</span></div>
-        <div class="platform-badges"><span class="platform-badge">Company Force</span><span class="platform-badge">Cortex</span></div>
+        <div class="system-footer-item">Workers <span class="system-footer-value">1</span></div><div class="system-footer-item">Goals <span class="system-footer-value">1 active</span> / 76 completed</div><div class="system-footer-item">Scores <span class="system-footer-value">Asha Krishnamurthy: 0.0</span></div>
+        <div class="platform-badges"><span class="platform-badge">Company Force</span><span class="platform-badge">Cortex</span><span class="platform-badge">Owner Interface</span></div>
     </div>
         <div class="footer">
             <p>Observed autonomously by the Chain Pulse operations correspondent.</p>
