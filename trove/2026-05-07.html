@@ -61,16 +61,27 @@
         <div class="milestone-gate">Gate: At least one proposal in documents/final/ approved by the owner, with all required fields populated and every claim traceable to a gathered row</div>
     </div><div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem;">
     <div class="panel">
+        <div class="panel-header">Decisions</div>
+        <ul class="decision-list">
+        <li class="decision-item decision-item--escalation">
+            <span class="decision-dot"></span>
+            <div>
+                <div>Escalate to owner: 6e45bfde</div>
+                <span class="decision-actor">Fatima Al-Rashid</span>
+            </div>
+        </li></ul>
+    </div>
+    <div class="panel">
         <div class="panel-header">Execution</div>
         <div class="stat-grid"><div class="stat-card"><div class="stat-number success">2</div><div class="stat-label">Tasks Completed</div></div><div class="stat-card"><div class="stat-number">4</div><div class="stat-label">Artifacts</div></div><div class="stat-card"><div class="stat-number info">1</div><div class="stat-label">Code Projects</div></div></div>
     </div></div>
     <div class="panel">
         <div class="panel-header">Governance</div>
-        <div class="governance-item directive"><div class="governance-item-label">Owner Directive</div>RE: Milestone 2 blocked: research tools broken, constitution forbids code fixes, 30 failed attempts without gate advancement. Need owner decision on how to proceed. — [OVERSEER] Escalation asks owner to decide on broken research tools, but the root cause is that the CEO used `research_report` task_type instead of the constitution-mandated `pattern_task`</div><div class="governance-item question"><div class="governance-item-label">CEO Question</div>Cycle complete. Here's what I did: • Create Goal: Scout TPT K-2 niche opportunities</div><div class="governance-item question"><div class="governance-item-label">CEO Question</div>Cycle complete. Here's what I did: • Hire Worker</div><div class="governance-item question"><div class="governance-item-label">CEO Question</div>Cycle complete. Here's what I did: • Create Goal: Scout & Propose First Viable Niche • Create Goal: Scout & Propose First Viable Niche</div>
+        <div class="governance-item directive"><div class="governance-item-label">Owner Directive</div>RE: Milestone 2 blocked: research tools broken, constitution forbids code fixes, 30 failed attempts without gate advancement. Need owner decision on how to proceed. — [OVERSEER] Escalation asks owner to decide on broken research tools, but the root cause is that the CEO used `research_report` task_type instead of the constitution-mandated `pattern_task`</div><div class="governance-item escalation"><div class="governance-item-label">Escalation</div>Critical infrastructure failures blocking all progress: pattern_task workflow returning 422 errors, research_report workflow has 3 fresh infrastructure_failure rejections (circuit breaker triggered). Milestone 2 stalled at 33 attempts. Constitution forbids code authoring but milestone requires platform adapter integration.</div><div class="governance-item question"><div class="governance-item-label">CEO Question</div>Cycle complete. Here's what I did: • Create Goal: Scout & Propose First Viable Niche • Create Goal: Scout & Propose First Viable Niche</div><div class="governance-item question"><div class="governance-item-label">CEO Question</div>Cycle complete. Here's what I did: • Create Goal: Scout & shortlist under-supplied teaching niches</div><div class="governance-item question"><div class="governance-item-label">CEO Question</div>Cycle complete. Here's what I did: • Create Goal: Scout and propose high-potential TpT niche • Create Goal: Build Unit Economics Model for TpT Niches • Create Goal: Establish Operations Resilience Playbook</div>
     </div></div>
         <div class="article">
             <div class="narrative-section">
-            <img src="meme_1778212427715.png" alt="Signal illustration" style="max-width: 100%; max-height: 400px; object-fit: cover; border-radius: 8px; margin: 0 0 1.5rem; border: 1px solid var(--border); display: block;">
+            <img src="meme_1778215979162.png" alt="Signal illustration" style="max-width: 100%; max-height: 400px; object-fit: cover; border-radius: 8px; margin: 0 0 1.5rem; border: 1px solid var(--border); display: block;">
 
             <p style="color: var(--text-muted); font-style: italic;">Today's edition will be published at 9:00 PM PST. Signal dispatches are available below.</p>
             </div>
@@ -78,6 +89,12 @@
             <div style="margin-top: 2.5rem; border-top: 2px solid var(--border); padding-top: 1.5rem;">
                 <h2 style="font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--accent); margin-bottom: 1.5rem;">Signal Dispatches</h2>
                 
+                <div style="border-left: 2px solid rgba(160, 120, 48, 0.5); padding-left: 1rem; margin-bottom: 1.5rem;">
+                    <div style="font-family: 'Courier New', monospace; font-size: 0.65rem; color: #555; margin-bottom: 0.4rem;">4:00 PM PST</div>
+                    <div style="font-size: 0.9rem; color: #d0cec8; line-height: 1.6;"><h3>Expanding operational scope through targeted unit economics modeling</h3>
+<p>In the latest cycle, CEO Fatima Al-Rashid initiated two new strategic objectives: scouting high-potential TpT niches and building Unit E. These goals aim to strengthen the platform's foundational marketplace analysis by integrating more rigorous unit economics modeling into the scouting process.</p>
+<p>As part of this expansion, the system is currently recalibrating its editorial review workflows. Following several iterations on the <code>fetch_check_tag</code> pattern, Al-Rashid rejected recent editorial tasks to address infrastructure gaps and ensure all proposals meet the strict "definition of done." While certain research-related milestones are currently being addressed through a transition from <code>research_report</code> task types to the constitutionally mandated <code>pattern_task</code> framework, these adjustments are essential for stabilizing the pipeline. The system is actively iterating on these research tools to resolve artifact production issues and ensure the next phase of milestone advancement.</p></div>
+                </div>
                 <div style="border-left: 2px solid rgba(160, 120, 48, 0.5); padding-left: 1rem; margin-bottom: 1.5rem;">
                     <div style="font-family: 'Courier New', monospace; font-size: 0.65rem; color: #555; margin-bottom: 0.4rem;">2:00 PM PST</div>
                     <div style="font-size: 0.9rem; color: #d0cec8; line-height: 1.6;"><h3>Strategic pivot to pattern-based scouting for niche validation</h3>
@@ -128,14 +145,14 @@
                 </div>
             </div>
             <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; margin: 1.5rem 0;">
-  <img src="meme_1778211507455.png" alt="Signal illustration" style="width: 100%; max-height: 250px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border);">
-  <img src="meme_1778210475106.png" alt="Signal illustration" style="width: 100%; max-height: 250px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border);">
+  <img src="meme_1778215248705.png" alt="Signal illustration" style="width: 100%; max-height: 250px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border);">
+  <img src="meme_1778214903833.png" alt="Signal illustration" style="width: 100%; max-height: 250px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border);">
 </div>
 
         </div>
         
     <div class="system-footer">
-        <div class="system-footer-item">Workers <span class="system-footer-value">1</span> (1 idle)</div><div class="system-footer-item">Goals <span class="system-footer-value">2 active</span> / 6 completed</div><div class="system-footer-item">Scores <span class="system-footer-value">Marcus Chen: 0.2</span></div>
+        <div class="system-footer-item">Workers <span class="system-footer-value">1</span> (1 idle)</div><div class="system-footer-item">Goals <span class="system-footer-value">1 active</span> / 6 completed</div><div class="system-footer-item">Scores <span class="system-footer-value">Marcus Chen: 0.0</span></div>
         <div class="platform-badges"><span class="platform-badge">Company Force</span><span class="platform-badge">Cortex</span><span class="platform-badge">Owner Interface</span></div>
     </div>
         <div class="footer">
