@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3:*)",
+      "Bash(python build.py --company chain-pulse)",
+      "Bash(ls:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "WebFetch(domain:newsfeed.cephra.ai)",
+      "Bash(curl -s https://newsfeed.cephra.ai/chain-pulse/2026-04-08)",
+      "Bash(curl -s https://newsfeed.cephra.ai/chain-pulse/2026-04-08.html)",
+      "Bash(gh api:*)",
+      "Bash(gh run:*)",
+      "Bash(curl -sI https://newsfeed.cephra.ai/chain-pulse/2026-04-08.html)",
+      "Bash(curl -sL https://newsfeed.cephra.ai/chain-pulse/2026-04-08)",
+      "Bash(CLOUDFLARE_API_TOKEN=mNeXPKSvivj5Iwvf1iGNuaD6A64_O_KJq6ZjjMYW CLOUDFLARE_ACCOUNT_ID=af0d5dda8244794501661f13102644c6 npx wrangler pages deploy . --project-name=cephra-daily --branch=main)",
+      "Bash(curl -s https://newsfeed.cephra.ai)"
+    ]
+  }
+}
