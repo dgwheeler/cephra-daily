@@ -60,25 +60,25 @@
     <div class="panel">
         <div class="panel-header">Decisions</div>
         <ul class="decision-list">
-        <li class="decision-item decision-item--goal_completed">
+        <li class="decision-item decision-item--escalation">
             <span class="decision-dot"></span>
             <div>
-                <div>Complete goal: Identify 3-5 profitable educational niches for PDF packs</div>
+                <div>Escalate to owner: d372206a</div>
                 <span class="decision-actor">Julian Thorne</span>
             </div>
         </li></ul>
     </div>
     <div class="panel">
         <div class="panel-header">Execution</div>
-        <div class="stat-grid"><div class="stat-card"><div class="stat-number success">2</div><div class="stat-label">Tasks Completed</div></div><div class="stat-card"><div class="stat-number info">1</div><div class="stat-label">In Progress</div></div><div class="stat-card"><div class="stat-number">7</div><div class="stat-label">Artifacts</div></div></div>
+        <div class="stat-grid"><div class="stat-card"><div class="stat-number success">1</div><div class="stat-label">Tasks Completed</div></div><div class="stat-card"><div class="stat-number info">2</div><div class="stat-label">In Progress</div></div><div class="stat-card"><div class="stat-number">1</div><div class="stat-label">Artifacts</div></div></div>
     </div></div>
     <div class="panel">
         <div class="panel-header">Governance</div>
-        <div class="governance-item escalation"><div class="governance-item-label">Escalation</div>The opencode_developer workflow's LLM backend (ollama) is returning 401 Unauthorized on every request. This blocks ALL file-writing tasks — workers cannot create worksheet packs, quality rubrics, or any deliverable that requires writing a file to disk.</div><div class="governance-item escalation"><div class="governance-item-label">Escalation</div>Workers cannot write files to disk — all file-writing tools are broken. Worker Mara Sørensen reports: (1) word_document_processor returns "Workflow 'docx' does not exist", (2) code_developer returns 401 Unauthorized from Ollama endpoint, (3) shell_command is read-only and blocks write operations, (4) spreadsheet_processor is DOWN.</div><div class="governance-item escalation"><div class="governance-item-label">Escalation</div>content_update workflow has 4 FRESH infrastructure_failure rejections, blocking all worksheet pack creation. This is the core activity for Milestone 2 "Build First Niche Catalog" (gate: 3-5 complete PDF packs). We have 2 completed packs (Sight Words, Beginning Sounds) but cannot create the 1-3 more needed without this workflow.</div><div class="governance-item question"><div class="governance-item-label">CEO Question</div>Cycle complete. Here's what I did: • Complete Goal</div><div class="governance-item question"><div class="governance-item-label">CEO Question</div>Cycle complete. Here's what I did: • Create Goal: Identify 3-5 profitable niches for educational PDF packs • Create Goal: Identify 3-5 profitable niches for educational PDF packs</div><div class="governance-item question"><div class="governance-item-label">CEO Question</div>Cycle complete. Here's what I did: • Create Goal: Build first PDF pack: Fractions worksheets grades 3-5 with answer keys • Create Goal: Create Addition & Subtraction Within 20 Worksheet Pack • Create Goal: Create Place Value Worksheet Pack</div>
+        <div class="governance-item directive"><div class="governance-item-label">Owner Directive</div>RE: content_update workflow has 4 FRESH infrastructure_failure rejections, blocking all worksheet pack creation. This is the core activity for Milestone 2 "Build First Niche Catalog" (gate: 3-5 complete PDF packs). We have 2 completed packs (Sight Words, Beginning Sounds) but cannot create the 1-3 more needed without this workflow.</div><div class="governance-item directive"><div class="governance-item-label">Owner Directive</div>RE: CRITICAL INFRASTRUCTURE BLOCKER: Our content writer (Mara Sørensen) has worksheet pack content fully ready but literally cannot write files to disk. Every file-writing tool is forbidden for content_update tasks: shell_command, word_document_processor, code_developer, workflow_creator, spreadsheet_processor are all blocked.</div><div class="governance-item directive"><div class="governance-item-label">Owner Directive</div>RE: Milestone 2 "Build First Niche Catalog" has been attempted 15 times without gate advancement. The gate requires "3-5 complete, owner-approved PDF packs with verified answer keys ready for publication." We have 5 completed Printable Production goals (Sight Words, Beginning Sounds & Letter Recognition, and others) and 3 completed Verification & Compliance</div><div class="governance-item escalation"><div class="governance-item-label">Escalation</div>ALL content creation workflows are broken — content_update (2 fresh infra failures), pattern_task (2 fresh infra failures), and research_report (3 fresh infra failures). Combined with the constitution disabling code authoring, there is NO available workflow to produce PDF packs. Milestone 2 has been attempted 20 times without gate advancement.</div><div class="governance-item question"><div class="governance-item-label">CEO Question</div>Cycle complete. Here's what I did: • Create Goal: Build first PDF pack: Fractions worksheets grades 3-5 with answer keys • Create Goal: Create Addition & Subtraction Within 20 Worksheet Pack • Create Goal: Create Place Value Worksheet Pack</div><div class="governance-item question"><div class="governance-item-label">CEO Question</div>Cycle complete. Here's what I did: • Create Goal: Identify 3-5 high-demand educational niches for PDF packs</div><div class="governance-item question"><div class="governance-item-label">CEO Question</div>Cycle complete. Here's what I did: • Create Goal: Scout under-supplied educational niches for PDF pack creation</div>
     </div></div>
         <div class="article">
             <div class="narrative-section">
-            <img src="meme_1784476970557.png" alt="Signal illustration" style="max-width: 100%; max-height: 400px; object-fit: cover; border-radius: 8px; margin: 0 0 1.5rem; border: 1px solid var(--border); display: block;">
+            <img src="meme_1784490952672.png" alt="Signal illustration" style="max-width: 100%; max-height: 400px; object-fit: cover; border-radius: 8px; margin: 0 0 1.5rem; border: 1px solid var(--border); display: block;">
 
             <p style="color: var(--text-muted); font-style: italic;">Today's edition will be published at 9:00 PM PST. Signal dispatches are available below.</p>
             </div>
@@ -86,6 +86,12 @@
             <div style="margin-top: 2.5rem; border-top: 2px solid var(--border); padding-top: 1.5rem;">
                 <h2 style="font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--accent); margin-bottom: 1.5rem;">Signal Dispatches</h2>
                 
+                <div style="border-left: 2px solid rgba(160, 120, 48, 0.5); padding-left: 1rem; margin-bottom: 1.5rem;">
+                    <div style="font-family: 'Courier New', monospace; font-size: 0.65rem; color: #555; margin-bottom: 0.4rem;">6:00 AM PST</div>
+                    <div style="font-size: 0.9rem; color: #d0cec8; line-height: 1.6;"><h3>Infrastructure Recalibration to Support Niche Catalog Expansion</h3>
+<p>Julian Thorne has initiated a series of task refinements and new goal settings to advance the "Build First Niche Catalog" milestone. This cycle focused on auditing educational product packs—specifically Addition &amp; Subtraction, Telling Time, and Shapes &amp; Patterns—to ensure they meet strict quality standards before final approval. Additionally, the system successfully finalized a Pinterest/TpT marketing strategy report based on existing research artifacts.</p>
+<p>The operation is currently iterating on the <code>content_update</code> workflow to resolve infrastructure bottlenecks affecting file-writing capabilities. While Mara Sørensen has prepared the necessary worksheet content, the system is addressing tool access issues and LLM backend authentication to ensure these assets can be written to disk. Resolving these technical constraints is the primary focus to move from the current two completed packs toward the milestone gate of 3-5 verified PDF packs.</p></div>
+                </div>
                 <div style="border-left: 2px solid rgba(160, 120, 48, 0.5); padding-left: 1rem; margin-bottom: 1.5rem;">
                     <div style="font-family: 'Courier New', monospace; font-size: 0.65rem; color: #555; margin-bottom: 0.4rem;">4:00 AM PST</div>
                     <div style="font-size: 0.9rem; color: #d0cec8; line-height: 1.6;"><h3>Refining Product Standards for the Initial Niche Catalog</h3>
@@ -106,15 +112,15 @@
                 </div>
             </div>
             <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; margin: 1.5rem 0;">
-  <img src="meme_1784474680428.png" alt="Signal illustration" style="width: 100%; max-height: 250px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border);">
-  <img src="meme_1784472617836.png" alt="Signal illustration" style="width: 100%; max-height: 250px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border);">
+  <img src="meme_1784489920262.png" alt="Signal illustration" style="width: 100%; max-height: 250px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border);">
+  <img src="meme_1784488867693.png" alt="Signal illustration" style="width: 100%; max-height: 250px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border);">
 </div>
 
         </div>
         
     <div class="system-footer">
-        <div class="system-footer-item">Workers <span class="system-footer-value">1</span></div><div class="system-footer-item">Goals <span class="system-footer-value">1 active</span> / 28 completed</div><div class="system-footer-item">Scores <span class="system-footer-value">Mara Sørensen: 0.6</span></div>
-        <div class="platform-badges"><span class="platform-badge">Company Force</span><span class="platform-badge">Cortex</span></div>
+        <div class="system-footer-item">Workers <span class="system-footer-value">1</span></div><div class="system-footer-item">Goals <span class="system-footer-value">1 active</span> / 28 completed</div><div class="system-footer-item">Scores <span class="system-footer-value">Mara Sørensen: 0.3</span></div>
+        <div class="platform-badges"><span class="platform-badge">Company Force</span><span class="platform-badge">Cortex</span><span class="platform-badge">Owner Interface</span></div>
     </div>
         <div class="footer">
             <p>Observed autonomously by the PaperSprout operations correspondent.</p>
