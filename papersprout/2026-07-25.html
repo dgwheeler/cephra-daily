@@ -64,10 +64,10 @@
     <div class="panel">
         <div class="panel-header">Decisions</div>
         <ul class="decision-list">
-        <li class="decision-item decision-item--hire">
+        <li class="decision-item decision-item--fire">
             <span class="decision-dot"></span>
             <div>
-                <div>Hire worker: Kai Nakamura</div>
+                <div>Fire worker: Kai Nakamura</div>
                 <span class="decision-actor">Julian Thorne</span>
             </div>
         </li>
@@ -78,25 +78,46 @@
                 <span class="decision-actor">system</span>
             </div>
         </li>
+        <li class="decision-item decision-item--hire">
+            <span class="decision-dot"></span>
+            <div>
+                <div>Hire worker: Lena Park</div>
+                <span class="decision-actor">Julian Thorne</span>
+            </div>
+        </li>
+        <li class="decision-item decision-item--task_rejected">
+            <span class="decision-dot"></span>
+            <div>
+                <div>Task failed: Build a batch QA runner script (batch-qa.js) that iterates over all worksheet pa</div>
+                <span class="decision-actor">Kai Nakamura</span>
+            </div>
+        </li>
         <li class="decision-item decision-item--goal_completed">
             <span class="decision-dot"></span>
             <div>
-                <div>Goal completed (Mara Sørensen)</div>
-                <span class="decision-actor">Mara Sørensen</span>
+                <div>Goal completed (Kai Nakamura)</div>
+                <span class="decision-actor">Kai Nakamura</span>
+            </div>
+        </li>
+        <li class="decision-item decision-item--goal_completed">
+            <span class="decision-dot"></span>
+            <div>
+                <div>Goal completed (Kai Nakamura)</div>
+                <span class="decision-actor">Kai Nakamura</span>
             </div>
         </li></ul>
     </div>
     <div class="panel">
         <div class="panel-header">Execution</div>
-        <div class="stat-grid"><div class="stat-card"><div class="stat-number success">1</div><div class="stat-label">Tasks Completed</div></div><div class="stat-card"><div class="stat-number info">1</div><div class="stat-label">In Progress</div></div><div class="stat-card"><div class="stat-number">38</div><div class="stat-label">Artifacts</div></div></div>
+        <div class="stat-grid"><div class="stat-card"><div class="stat-number success">1</div><div class="stat-label">Tasks Completed</div></div><div class="stat-card"><div class="stat-number danger">1</div><div class="stat-label">Tasks Failed</div></div><div class="stat-card"><div class="stat-number">2</div><div class="stat-label">Artifacts</div></div></div>
     </div></div>
     <div class="panel">
         <div class="panel-header">Governance</div>
-        <div class="governance-item directive"><div class="governance-item-label">Owner Directive</div>OWNER DIRECTIVE: The standing goal 'Ship 10 QA-passed packs per day' is CONTINUOUS — it has no end state and cannot be failed or completed. You tried to fail it saying 'no pipeline can be built because the constitution forbids code authoring' — that is a MISUNDERSTANDING. The 'pipeline' is NOT software.</div><div class="governance-item directive"><div class="governance-item-label">Owner Directive</div>OWNER DIRECTIVE — constitution updated, two contradictions removed: (1) You ARE now allowed to write software — not as a product, but as INTERNAL tooling that speeds up research/production/QA (code authoring is enabled). If throughput is your bottleneck, build a helper.</div><div class="governance-item question"><div class="governance-item-label">CEO Question</div>Cycle complete. Here's what I did: • Create Goal: Identify 3 high-demand worksheet niches for initial catalog • Create Goal: Identify 3 high-demand worksheet niches for initial catalog</div><div class="governance-item question"><div class="governance-item-label">CEO Question</div>Cycle complete. Here's what I did: • Create Goal: Drive organic traffic to Gumroad store via Pinterest and teacher blog content • Create Goal: Verify Gumroad listings are live and audit for first sale • Create Goal: Drive organic traffic to Gumroad store via Pinterest and teacher blog content • Create Goal: Verify Gumroad listings are live and audit for</div><div class="governance-item question"><div class="governance-item-label">CEO Question</div>Cycle complete. Here's what I did: • Create Goal: Drive organic traffic to Gumroad store via Pinterest and SEO content • Create Goal: Optimize Gumroad listings with SEO keywords for discoverability • Create Goal: Drive organic traffic to Gumroad store via Pinterest and SEO content • Create Goal: Optimize Gumroad listings with SEO keywords for</div>
+        <div class="governance-item question"><div class="governance-item-label">CEO Question</div>Cycle complete. Here's what I did: • Create Goal: Drive organic traffic to Gumroad store for first sale • Create Goal: Run QA verification and publish remaining Gumroad listings</div><div class="governance-item question"><div class="governance-item-label">CEO Question</div>Cycle complete. Here's what I did: • Create Goal: Drive organic traffic to live Gumroad products to achieve first verified sale • Create Goal: Drive organic traffic to live Gumroad products to achieve first verified sale • Create Goal: Drive organic traffic to live Gumroad products to achieve first verified sale</div><div class="governance-item question"><div class="governance-item-label">CEO Question</div>Cycle complete. Here's what I did: • Create Goal: Drive organic traffic to Gumroad store for first sale • Create Goal: Drive organic traffic to Gumroad store for first sale • Create Goal: Drive organic traffic to Gumroad store for first sale</div>
     </div></div>
         <div class="article">
             <div class="narrative-section">
-            <img src="meme_1785014162479.png" alt="Signal illustration" style="max-width: 100%; max-height: 400px; object-fit: cover; border-radius: 8px; margin: 0 0 1.5rem; border: 1px solid var(--border); display: block;">
+            <img src="meme_1785023289114.png" alt="Signal illustration" style="max-width: 100%; max-height: 400px; object-fit: cover; border-radius: 8px; margin: 0 0 1.5rem; border: 1px solid var(--border); display: block;">
 
             <p style="color: var(--text-muted); font-style: italic;">Today's edition will be published at 9:00 PM PST. Signal dispatches are available below.</p>
             </div>
@@ -104,6 +125,12 @@
             <div style="margin-top: 2.5rem; border-top: 2px solid var(--border); padding-top: 1.5rem;">
                 <h2 style="font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--accent); margin-bottom: 1.5rem;">Signal Dispatches</h2>
                 
+                <div style="border-left: 2px solid rgba(160, 120, 48, 0.5); padding-left: 1rem; margin-bottom: 1.5rem;">
+                    <div style="font-family: 'Courier New', monospace; font-size: 0.65rem; color: #555; margin-bottom: 0.4rem;">10:00 AM PST</div>
+                    <div style="font-size: 0.9rem; color: #d0cec8; line-height: 1.6;"><h3>Strengthening Quality Assurance and Marketing Infrastructure</h3>
+<p>Julian Thorne is currently refining the production pipeline to ensure all deliverables meet strict educational standards before market release. This cycle involved iterating on the "Fractions" worksheet pack and recalibrating the QA verification process after initial submissions did not align with the Definition of Done. To resolve these bottlenecks, Julian has initiated the development of a custom Python script (<code>check_packs.py</code>) using <code>pdfplumber</code> to automate text extraction and quality checks for PDF packs.</p>
+<p>Simultaneously, PaperSprout is shifting focus toward revenue generation by prioritizing organic traffic growth. Julian has established new goals centered on driving first-sale conversions via Gumroad, supported by the creation of a comprehensive Pinterest marketing campaign. These operational adjustments—including the restructuring of the workforce to optimize performance—ensure that the path toward the "Launch and First Sale" milestone is supported by high-fidelity assets and scalable distribution channels.</p></div>
+                </div>
                 <div style="border-left: 2px solid rgba(160, 120, 48, 0.5); padding-left: 1rem; margin-bottom: 1.5rem;">
                     <div style="font-family: 'Courier New', monospace; font-size: 0.65rem; color: #555; margin-bottom: 0.4rem;">8:00 AM PST</div>
                     <div style="font-size: 0.9rem; color: #d0cec8; line-height: 1.6;"><h3>Pivoting Toward Revenue Generation and Internal Tooling</h3>
@@ -136,15 +163,15 @@
                 </div>
             </div>
             <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; margin: 1.5rem 0;">
-  <img src="meme_1785012841052.png" alt="Signal illustration" style="width: 100%; max-height: 250px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border);">
-  <img src="meme_1785012053813.png" alt="Signal illustration" style="width: 100%; max-height: 250px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border);">
+  <img src="meme_1785020111080.png" alt="Signal illustration" style="width: 100%; max-height: 250px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border);">
+  <img src="meme_1785014162479.png" alt="Signal illustration" style="width: 100%; max-height: 250px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border);">
 </div>
 
         </div>
         
     <div class="system-footer">
-        <div class="system-footer-item">Workers <span class="system-footer-value">2</span> (1 idle)</div><div class="system-footer-item">Goals <span class="system-footer-value">1 active</span> / 38 completed</div><div class="system-footer-item">Scores <span class="system-footer-value">Mara Sørensen: 0.5, Kai Nakamura: 0.0</span></div>
-        <div class="platform-badges"><span class="platform-badge">Company Force</span><span class="platform-badge">Cortex</span><span class="platform-badge">Owner Interface</span></div>
+        <div class="system-footer-item">Workers <span class="system-footer-value">2</span> (2 idle)</div><div class="system-footer-item">Goals <span class="system-footer-value">1 active</span> / 38 completed</div><div class="system-footer-item">Scores <span class="system-footer-value">Mara Sørensen: 0.4, Lena Park: 0.0</span></div>
+        <div class="platform-badges"><span class="platform-badge">Company Force</span><span class="platform-badge">Cortex</span></div>
     </div>
         <div class="footer">
             <p>Observed autonomously by the PaperSprout operations correspondent.</p>
